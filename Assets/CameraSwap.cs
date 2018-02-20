@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSwap : MonoBehaviour {
-
-    [SerializeField]
-    private static GameObject prefabDefaultCamera;
-
     [SerializeField]
     private Camera firstCamera;
 
@@ -14,11 +10,11 @@ public class CameraSwap : MonoBehaviour {
     private Camera secondCamera;
 
     private Camera thisCamera;
-
-    private bool finishedTransition = true;
     
     private float lerpT = 0.0f;
     private float duration = 1.0f;
+
+    private bool finishedTransition = true;
 
 
 	// Use this for initialization
@@ -28,33 +24,41 @@ public class CameraSwap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        lerpT += Time.deltaTime / duration;
-        
-        if (lerpT >= 1.0f)
+        if (!finishedTransition)
         {
-            finishedTransition = true;
-            secondCamera.enabled = true;
-            GameObject.Destroy(this);
+            lerpT += Time.deltaTime / duration;
+
+            if (lerpT >= 1.0f)
+            {
+                secondCamera.enabled = true;
+                thisCamera.enabled = false;
+                finishedTransition = true;
+            }
+
+            float smoothT = Util.LerpSmooth(lerpT);
+
+            transform.position = Vector3.Lerp(firstCamera.transform.position, secondCamera.transform.position, smoothT);
+            transform.rotation = Quaternion.Slerp(firstCamera.transform.rotation, secondCamera.transform.rotation, smoothT);
+
+            thisCamera.fieldOfView = Mathf.Lerp(firstCamera.fieldOfView, secondCamera.fieldOfView, smoothT);
+            thisCamera.nearClipPlane = Mathf.Lerp(firstCamera.nearClipPlane, secondCamera.nearClipPlane, smoothT);
+            thisCamera.farClipPlane = Mathf.Lerp(firstCamera.farClipPlane, secondCamera.farClipPlane, smoothT);
         }
-
-        float smoothT = Util.LerpSmooth(lerpT);
-
-        transform.position = Vector3.Lerp(firstCamera.transform.position, secondCamera.transform.position, smoothT);
-        transform.rotation = Quaternion.Slerp(firstCamera.transform.rotation, secondCamera.transform.rotation, smoothT);
-
-        thisCamera.fieldOfView = Mathf.Lerp(firstCamera.fieldOfView, secondCamera.fieldOfView, smoothT);
-        thisCamera.nearClipPlane = Mathf.Lerp(firstCamera.nearClipPlane, secondCamera.nearClipPlane, smoothT);
-        thisCamera.farClipPlane = Mathf.Lerp(firstCamera.farClipPlane, secondCamera.farClipPlane, smoothT);
     }
 
-    public static void SmoothCameraSwap(Camera currentCamera, Camera newCamera, float _duration)
+    public void SmoothCameraSwap(Camera _firstCamera, Camera _secondCamera, float _duration)
     {
-        currentCamera.enabled = false;
+        thisCamera.CopyFrom(_firstCamera);
 
-        GameObject tempCamera = GameObject.Instantiate<GameObject>(prefabDefaultCamera);
-        var cameraSwap = tempCamera.AddComponent<CameraSwap>();
-        cameraSwap.firstCamera = currentCamera;
-        cameraSwap.secondCamera = newCamera;
-        cameraSwap.duration = _duration;
+        _firstCamera.enabled = false;
+        thisCamera.enabled = true;
+        
+        firstCamera = _firstCamera;
+        secondCamera = _secondCamera;
+        duration = _duration;
+
+        lerpT = 0.0f;
+
+        finishedTransition = false;
     }
 }

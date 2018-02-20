@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 4964229316517550}
   - component: {fileID: 95365792163899072}
   m_Layer: 0
-  m_Name: Bird
+  m_Name: BirdFlap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
