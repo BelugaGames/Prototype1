@@ -17,12 +17,15 @@ public class movementController : MonoBehaviour {
     public float lMagConstant;
     Vector3 target;
 
+    public float lookDirForceConstant = 1.0f;
+    public float downDirForceConstant = 1.0f;
+
     public float flapDuration = 1.0f;
     float flapProgress = 100000.0f;
 
     // Use this for initialization
     void Start () {
-        GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 10000));
+
     }
 	
 	// Update is called once per frame
@@ -50,9 +53,15 @@ public class movementController : MonoBehaviour {
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(target), Time.deltaTime * smooth);
 
         //transform.rotation = Quaternion.Euler(target);
-        //transform.rotation *= Quaternion.AngleAxis(target.y, new Vector3(0, 1, 0));
+
+        //float additionalYFromBanking = Mathf.Abs(transform.rotation.z) * 0.85f;
+        //transform.rotation *= Quaternion.AngleAxis(target.y + additionalYFromBanking, transform.rotation * new Vector3(0, 1, 0));
+
         transform.rotation *= Quaternion.AngleAxis(target.z, /*transform.rotation **/ new Vector3(0, 0, 1));
-        transform.rotation *= Quaternion.AngleAxis(target.x, /*transform.rotation **/ new Vector3(1, 0, 0));
+
+        float additionalXFromBanking = Mathf.Abs(transform.rotation.z) * 0.85f;
+
+        transform.rotation *= Quaternion.AngleAxis(target.x - additionalXFromBanking, /*transform.rotation **/ new Vector3(1, 0, 0));
 
         //Vector3 eulerAnglesRot = yzxRotQuat.eulerAngles;
         ////eulerAnglesRot.x = Mathf.Clamp(eulerAnglesRot.x, -89.0f, 89.0f);
@@ -71,13 +80,13 @@ public class movementController : MonoBehaviour {
             liftMagnitude = 10000;
         }
 
-       GetComponent<Rigidbody>().AddForceAtPosition(liftVector * liftMagnitude, transform.position + new Vector3(0, 0, 0.0f));
+        //GetComponent<Rigidbody>().AddForceAtPosition(liftVector * liftMagnitude, transform.position + new Vector3(0, 0, 0.0f));
 
         if (flapProgress <= flapDuration)
         {
             flapProgress += Time.fixedDeltaTime;
 
-            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * flapFunc(flapProgress / flapDuration) * 40000.0f);
+            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * flapFunc(flapProgress / flapDuration) * 4.0f);
         }
         else
         {
@@ -87,17 +96,29 @@ public class movementController : MonoBehaviour {
             }
         }
 
-        var dragCoefficient = liftCoefficient;
+        GetComponent<Rigidbody>().AddForce(0.1f * Physics.gravity);
 
-        Debug.Log(dragCoefficient);
+        //var dragCoefficient = liftCoefficient;
 
-        GetComponent<Rigidbody>().velocity.Scale(new Vector3(1.0f - (0.5f * dragCoefficient), 1.0f, 1.0f - (0.5f * dragCoefficient)));
+        //Debug.Log(dragCoefficient);
+
+        // GetComponent<Rigidbody>().velocity.Scale(new Vector3(0.9f, 0.8f, 0.9f));
+
+        //GetComponent<Rigidbody>().velocity.Scale(new Vector3(1.0f - (0.5f * dragCoefficient), 1.0f, 1.0f - (0.5f * dragCoefficient)));
         //GetComponent<Rigidbody>().velocity.Scale(new Vector3(dragCoefficient > 0 ? 0.0f : 1.0f, 1.0f, dragCoefficient > 0 ? 0.0f : 1.0f));
+
+        float forceInLookDir = Mathf.Abs(GetComponent<Rigidbody>().velocity.y) * lookDirForceConstant * Mathf.Sin(Mathf.Deg2Rad * Vector3.Angle(transform.rotation * new Vector3(0, 0, 1), new Vector3(0, -1, 0)) * 2.0f);
+        float forceInDownDir = downDirForceConstant * Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(transform.rotation * new Vector3(0, 0, 1), new Vector3(0, -1, 0)));
+        //Debug.Log(forceInLookDir);
+        Debug.Log(forceInDownDir);
+
+       // GetComponent<Rigidbody>().AddForce(transform.rotation * new Vector3(0, 0, 1) /*liftVector*/ * forceInLookDir);
+        GetComponent<Rigidbody>().AddForce(new Vector3(0, -1, 0) * forceInDownDir);
     }
 
     Vector3 calculateL()
     {
-        return (transform.rotation * new Vector3(0, 1, 0.2f)).normalized;
+        return (transform.rotation * new Vector3(0, 1, 0)).normalized;
     }
 
     float calculateLCoefficient(Vector3 _velocity, Vector3 _lift)

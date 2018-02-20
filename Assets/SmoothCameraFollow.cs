@@ -27,9 +27,9 @@ public class SmoothCameraFollow : MonoBehaviour {
         Vector3 followPosition = targetObject.position + targetObject.rotation * followOffset;
 
         //Lerp between positions
-        transform.position = Vector3.Lerp(lastFollowPosition, followPosition, Util.LerpSmooth(0.25f));
+        transform.position = Vector3.Lerp(lastFollowPosition, followPosition, Util.LerpSmooth(0.75f));
 
-        Vector3 targetMidpoint = Vector3.Lerp(lastTargetPosition, targetPosition, Util.LerpSmooth(0.25f));
+        Vector3 targetMidpoint = Vector3.Lerp(lastTargetPosition, targetPosition, Util.LerpSmooth(0.75f));
 
         transform.LookAt(targetMidpoint);
 
