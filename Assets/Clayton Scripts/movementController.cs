@@ -27,9 +27,12 @@ public class movementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        target.z += 0.1f * Input.GetAxis("Horizontal") * tiltAngle;
-        target.x += 0.1f * Input.GetAxis("Vertical") * tiltAngle;
-        
+        target.z += 4.0f * Input.GetAxis("Horizontal");
+        target.x += 4.0f * Input.GetAxis("Vertical");
+
+        target.z = Mathf.Clamp(target.z, -tiltAngle, tiltAngle);
+        target.x = Mathf.Clamp(target.x, -tiltAngle, tiltAngle);
+
 
         if (Input.GetAxis("Horizontal_right") < 0)
         {
@@ -47,6 +50,8 @@ public class movementController : MonoBehaviour {
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(target), Time.deltaTime * smooth);
 
         transform.rotation = Quaternion.Euler(target);
+
+
 
         liftVector = calculateL();
         liftCoefficient = calculateLCoefficient(GetComponent<Rigidbody>().velocity, liftVector);
