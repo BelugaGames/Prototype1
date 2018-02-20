@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5967a071e7223244ba3946358947524c
-timeCreated: 1519091427
+guid: 0ffc6e0b1cea86f4eb265a2ddbb4c574
+timeCreated: 1519092108
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -59,7 +59,7 @@ ModelImporter:
     400050: tail4
     2100000: MAT_Albatrosses_Nest_Egg_LOD0
     4300000: Albatross_parent_LOD0
-    7400000: caseysstuffingaround
+    7400000: AlbatrossGlide
     9500000: //RootNode
     13700000: Albatross_parent_LOD0
   externalObjects: {}
@@ -90,9 +90,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: caseysstuffingaround
-      takeName: caseysstuffingaround
-      firstFrame: 19
+      name: AlbatrossGlide
+      takeName: AlbatrossGlide
+      firstFrame: 0
       lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
