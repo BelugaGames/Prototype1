@@ -10,7 +10,7 @@ public class TestScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debug.Log("Test script started");
-        GameObject.Find("CameraSwapper").GetComponent<CameraSwap>().SmoothCameraSwap(Camera.main, cam2, 1.0f);
+        //GameObject.Find("CameraSwapper").GetComponent<CameraSwap>().SmoothCameraSwap(Camera.main, cam2, 1.0f);
 	}
 	
 	// Update is called once per frame
