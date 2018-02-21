@@ -14826,7 +14826,7 @@ MonoBehaviour:
   liftCoefficient: 0
   liftMagnitude: 0
   lMagConstant: 10
-  lookDirForceConstant: 0.5
+  lookDirForceConstant: 10
   downDirForceConstant: 10
   flapDuration: 0.5
 --- !u!1 &389098920
