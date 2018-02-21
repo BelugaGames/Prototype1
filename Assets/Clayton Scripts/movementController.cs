@@ -31,7 +31,7 @@ public class movementController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         target.z = 4.0f * Input.GetAxis("Horizontal");
-        target.x = 4.0f * Input.GetAxis("Vertical");
+        target.x = 1.0f * Input.GetAxis("Vertical");
 
         //target.z = Mathf.Clamp(target.z, -tiltAngle, tiltAngle);
         //target.x = Mathf.Clamp(target.x, -tiltAngle, tiltAngle);
@@ -75,18 +75,13 @@ public class movementController : MonoBehaviour {
         //liftCoefficient *= liftCoefficient;
         liftMagnitude = calculateLMag(GetComponent<Rigidbody>().velocity.magnitude);
 
-        if (liftMagnitude > 10000)
-        {
-            liftMagnitude = 10000;
-        }
-
-        //GetComponent<Rigidbody>().AddForceAtPosition(liftVector * liftMagnitude, transform.position + new Vector3(0, 0, 0.0f));
+        GetComponent<Rigidbody>().AddForce(liftVector * liftMagnitude);
 
         if (flapProgress <= flapDuration)
         {
             flapProgress += Time.fixedDeltaTime;
 
-            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * flapFunc(flapProgress / flapDuration) * 4.0f);
+            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * flapFunc(flapProgress / flapDuration) * 6.0f);
         }
         else
         {
@@ -107,13 +102,25 @@ public class movementController : MonoBehaviour {
         //GetComponent<Rigidbody>().velocity.Scale(new Vector3(1.0f - (0.5f * dragCoefficient), 1.0f, 1.0f - (0.5f * dragCoefficient)));
         //GetComponent<Rigidbody>().velocity.Scale(new Vector3(dragCoefficient > 0 ? 0.0f : 1.0f, 1.0f, dragCoefficient > 0 ? 0.0f : 1.0f));
 
-        float forceInLookDir = Mathf.Abs(GetComponent<Rigidbody>().velocity.y) * lookDirForceConstant * Mathf.Sin(Mathf.Deg2Rad * Vector3.Angle(transform.rotation * new Vector3(0, 0, 1), new Vector3(0, -1, 0)) * 2.0f);
-        float forceInDownDir = downDirForceConstant * Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(transform.rotation * new Vector3(0, 0, 1), new Vector3(0, -1, 0)));
-        //Debug.Log(forceInLookDir);
-        Debug.Log(forceInDownDir);
+        //0 -> 1
+        //90 -> 0
+        //180 -> -1
 
-       // GetComponent<Rigidbody>().AddForce(transform.rotation * new Vector3(0, 0, 1) /*liftVector*/ * forceInLookDir);
-        GetComponent<Rigidbody>().AddForce(new Vector3(0, -1, 0) * forceInDownDir);
+        var angleBetween = Mathf.Deg2Rad * Vector3.Angle(transform.rotation * new Vector3(0, 0, 1), new Vector3(0, -1, 0));
+
+        float forceInLookDir = lookDirForceConstant * Mathf.Abs(Mathf.Cos(angleBetween));
+
+        if (angleBetween > Mathf.PI / 2.0f)
+        {
+            float factor = (angleBetween - Mathf.PI / 2.0f) / (Mathf.PI / 2.0f);
+            forceInLookDir *= factor * Mathf.Max(0, Vector3.Dot(GetComponent<Rigidbody>().velocity, transform.rotation * new Vector3(0, 0, 1)));
+        }
+        //float forceInDownDir = downDirForceConstant * Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(transform.rotation * new Vector3(0, 0, 1), new Vector3(0, -1, 0)));
+        //Debug.Log(forceInLookDir);
+        //Debug.Log(forceInDownDir);
+
+        //GetComponent<Rigidbody>().AddForce(transform.rotation * new Vector3(0, 0, 1) /*liftVector*/ * forceInLookDir);
+        //GetComponent<Rigidbody>().AddForce(new Vector3(0, -1, 0) * forceInDownDir);
     }
 
     Vector3 calculateL()
@@ -123,12 +130,12 @@ public class movementController : MonoBehaviour {
 
     float calculateLCoefficient(Vector3 _velocity, Vector3 _lift)
     {
-        return (Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * Vector3.Angle(_velocity, _lift))));
+        return (-Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(_velocity, _lift)));
     }
 
     float calculateLMag(float _velocity)
     {
-        return (lMagConstant * Mathf.Pow(_velocity, 2) * liftCoefficient);
+        return (lMagConstant * liftCoefficient);
     }
 
     float flapFunc(float _t)
