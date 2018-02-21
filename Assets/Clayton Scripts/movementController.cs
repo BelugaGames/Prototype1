@@ -25,7 +25,7 @@ public class movementController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * 600.0f);
     }
 	
 	// Update is called once per frame
@@ -81,7 +81,7 @@ public class movementController : MonoBehaviour {
         {
             flapProgress += Time.fixedDeltaTime;
 
-            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * flapFunc(flapProgress / flapDuration) * 6.0f);
+            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.25f, 1.0f)) * flapFunc(flapProgress / flapDuration) * 12.0f);
         }
         else
         {
@@ -97,7 +97,7 @@ public class movementController : MonoBehaviour {
 
         //Debug.Log(dragCoefficient);
 
-        // GetComponent<Rigidbody>().velocity.Scale(new Vector3(0.9f, 0.8f, 0.9f));
+        GetComponent<Rigidbody>().velocity.Scale(new Vector3(0.9f, 0.8f, 0.9f));
 
         //GetComponent<Rigidbody>().velocity.Scale(new Vector3(1.0f - (0.5f * dragCoefficient), 1.0f, 1.0f - (0.5f * dragCoefficient)));
         //GetComponent<Rigidbody>().velocity.Scale(new Vector3(dragCoefficient > 0 ? 0.0f : 1.0f, 1.0f, dragCoefficient > 0 ? 0.0f : 1.0f));
@@ -130,7 +130,7 @@ public class movementController : MonoBehaviour {
 
     float calculateLCoefficient(Vector3 _velocity, Vector3 _lift)
     {
-        return (-Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(_velocity, _lift)));
+        return GetComponent<Rigidbody>().velocity.magnitude * 0.1f * (-Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(_velocity, _lift)));
     }
 
     float calculateLMag(float _velocity)
