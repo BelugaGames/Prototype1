@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &368016862 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95365792163899072, guid: cbee19eb50a95f8469c2c4ca5d6becf2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1463285122}
 --- !u!1 &374358200
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,6 +214,7 @@ MonoBehaviour:
   targetObject: {fileID: 388696355}
   targetOffset: {x: 0, y: 0, z: 0}
   followOffset: {x: 0, y: 0, z: -10}
+  objectCollisionBufferSize: 0
 --- !u!1 &388696351
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,11 +331,35 @@ MonoBehaviour:
   smooth: 2
   tiltAngle: 60
   liftCoefficient: 0
-  liftMagnitude: 0
+  liftMagnitude: 1
   lMagConstant: 10
   lookDirForceConstant: 10
   downDirForceConstant: 10
   flapDuration: 0.5
+  maxSpeed: 60
+  pullUpRange: 45
+  flapForce: 20
+  horRotConstant: 4
+  verRotConstant: 2
+  animator: {fileID: 368016862}
+--- !u!1 &418160247 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: efb5377432d35a9499815be897f0d64f, type: 3}
+  m_PrefabInternal: {fileID: 1130350163}
+--- !u!64 &418160252
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 418160247}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: efb5377432d35a9499815be897f0d64f, type: 3}
 --- !u!1 &594286897
 GameObject:
   m_ObjectHideFlags: 0

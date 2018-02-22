@@ -25,6 +25,12 @@ public class movementController : MonoBehaviour {
 
     public float maxSpeed = 60.0f;
     public float pullUpRange = 45.0f;
+    public float flapForce = 12.0f;
+    public float horRotConstant = 4.0f;
+    public float verRotConstant = 2.0f;
+
+    [SerializeField]
+    private Animator animator;
 
     // Use this for initialization
     void Start () {
@@ -33,8 +39,8 @@ public class movementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        target.z = 4.0f * Input.GetAxis("Horizontal");
-        target.x = 1.0f * Input.GetAxis("Vertical");
+        target.z = horRotConstant * Input.GetAxis("Horizontal");
+        target.x = verRotConstant * Input.GetAxis("Vertical");
 
         //target.z = Mathf.Clamp(target.z, -tiltAngle, tiltAngle);
         //target.x = Mathf.Clamp(target.x, -tiltAngle, tiltAngle);
@@ -81,8 +87,6 @@ public class movementController : MonoBehaviour {
             1.0f - Mathf.Pow((zRotation - 180) / (90 + pullUpRange), 2.0f)
             );
         additionalXFromBanking = bankFactor * 2.0f;
-
-        Debug.Log(Mathf.Abs(zRotation));
         
 
         transform.rotation *= Quaternion.AngleAxis(target.x - additionalXFromBanking, /*transform.rotation **/ new Vector3(1, 0, 0));
@@ -105,23 +109,22 @@ public class movementController : MonoBehaviour {
         {
             flapProgress += Time.fixedDeltaTime;
 
-            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.25f, 1.0f)) * flapFunc(flapProgress / flapDuration) * 12.0f);
+            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.25f, 1.0f)) * flapFunc(flapProgress / flapDuration) * flapForce);
         }
         else
         {
             if (Input.GetButtonDown("Flap"))
             {
+                animator.SetTrigger("Flapped");
                 flapProgress = 0.0f;
             }
         }
-
-        GetComponent<Rigidbody>().AddForce(0.1f * Physics.gravity);
 
         //var dragCoefficient = liftCoefficient;
 
         //Debug.Log(dragCoefficient);
 
-        GetComponent<Rigidbody>().velocity.Scale(new Vector3(0.9f, 0.8f, 0.9f));
+        //GetComponent<Rigidbody>().velocity.Scale(new Vector3(0.3f, 0.9f, 0.3f));
 
         //GetComponent<Rigidbody>().velocity.Scale(new Vector3(1.0f - (0.5f * dragCoefficient), 1.0f, 1.0f - (0.5f * dragCoefficient)));
         //GetComponent<Rigidbody>().velocity.Scale(new Vector3(dragCoefficient > 0 ? 0.0f : 1.0f, 1.0f, dragCoefficient > 0 ? 0.0f : 1.0f));
@@ -151,6 +154,17 @@ public class movementController : MonoBehaviour {
         Vector3 CompenVec = ((transform.rotation * new Vector3(0, 0, 1) * desiredSpeed) - GetComponent<Rigidbody>().velocity) * 0.5f;
         
         GetComponent<Rigidbody>().velocity += CompenVec;
+
+
+
+        //Vector3 velocity = GetComponent<Rigidbody>().velocity;
+        //velocity.y = 0;
+        //Debug.Log(velocity);
+        //GetComponent<Rigidbody>().AddForce(-velocity * 1.0f);
+
+
+
+        GetComponent<Rigidbody>().AddForce(0.3f * Physics.gravity);
     }
 
     Vector3 calculateL()
