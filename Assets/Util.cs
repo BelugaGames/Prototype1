@@ -5,7 +5,7 @@ using System.Text;
 
 using UnityEngine;
 
-class Util
+class GameUtil
 {
     public static float LerpSmooth(float t)
     {

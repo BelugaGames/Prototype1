@@ -35,7 +35,7 @@ public class CameraSwap : MonoBehaviour {
                 finishedTransition = true;
             }
 
-            float smoothT = Util.LerpSmooth(lerpT);
+            float smoothT = GameUtil.LerpSmooth(lerpT);
 
             transform.position = Vector3.Lerp(firstCamera.transform.position, secondCamera.transform.position, smoothT);
             transform.rotation = Quaternion.Slerp(firstCamera.transform.rotation, secondCamera.transform.rotation, smoothT);
