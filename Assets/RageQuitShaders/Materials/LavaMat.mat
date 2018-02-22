@@ -1,0 +1,249 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: LavaMat
+  m_Shader: {fileID: 4800000, guid: 8a8f18361a64b8042a5b6d5b108592a4, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CrackLavaTexture:
+        m_Texture: {fileID: 2800000, guid: d058b7eae73a535499d2951b0a32285e, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailHeightmap:
+        m_Texture: {fileID: 2800000, guid: c9505898b26904342b80b33b470037a1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FireFlowTexture:
+        m_Texture: {fileID: 2800000, guid: 71c040c802cfcab45848488ab440431d, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _HardCrackTexture:
+        m_Texture: {fileID: 2800000, guid: a17913244e8a35a4da19c74d9e648c10, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HradCrackTexture:
+        m_Texture: {fileID: 2800000, guid: a17913244e8a35a4da19c74d9e648c10, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _LavaFlowTexture:
+        m_Texture: {fileID: 2800000, guid: d058b7eae73a535499d2951b0a32285e, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _LavaHardCrackNormal:
+        m_Texture: {fileID: 2800000, guid: 5bdab6a880a56e4469637a4355e529e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LavaHeightMap:
+        m_Texture: {fileID: 2800000, guid: 40dbe5d54f6593c488ac5a8518ccfb76, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _LavaNormal:
+        m_Texture: {fileID: 2800000, guid: 307a7e878a914924db21e801600212a9, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _LightMagma:
+        m_Texture: {fileID: 2800000, guid: d058b7eae73a535499d2951b0a32285e, type: 3}
+        m_Scale: {x: 100, y: 100}
+        m_Offset: {x: 0, y: 0}
+    - _Magamanormal:
+        m_Texture: {fileID: 2800000, guid: cf1f89ebf13aa6e48b88a628285c5746, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Magma:
+        m_Texture: {fileID: 2800000, guid: d058b7eae73a535499d2951b0a32285e, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _MagmaTexture:
+        m_Texture: {fileID: 2800000, guid: ff79832ae24f5cb4194893a62ca922f8, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _Magmanormal:
+        m_Texture: {fileID: 2800000, guid: cf1f89ebf13aa6e48b88a628285c5746, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _MainHeightMap:
+        m_Texture: {fileID: 2800000, guid: 40dbe5d54f6593c488ac5a8518ccfb76, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mamaflow:
+        m_Texture: {fileID: 2800000, guid: f7e96904e8667e1439548f0f86389447, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture1:
+        m_Texture: {fileID: 2800000, guid: 67cd5c523b356d84ba3cbc1dc4a8e62e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: a17913244e8a35a4da19c74d9e648c10, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: d058b7eae73a535499d2951b0a32285e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: 5bdab6a880a56e4469637a4355e529e9, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: ff79832ae24f5cb4194893a62ca922f8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: d058b7eae73a535499d2951b0a32285e, type: 3}
+        m_Scale: {x: 10, y: 25}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample5:
+        m_Texture: {fileID: 2800000, guid: 40dbe5d54f6593c488ac5a8518ccfb76, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample6:
+        m_Texture: {fileID: 2800000, guid: c9505898b26904342b80b33b470037a1, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Amplitude: 10
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailDisplacementHeight: 46.8
+    - _DetailDisplacementspeed: 0.01
+    - _DetailNormalMapScale: 1
+    - _DetailTiling: 3
+    - _DisplacementTiling: 2.5
+    - _DstBlend: 0
+    - _EdgeLength: 15
+    - _Float0: 0.1
+    - _Float10: 0
+    - _Float12: 0.54
+    - _Float13: 1
+    - _Float14: 0.01
+    - _Float15: 0
+    - _Float16: 0
+    - _Float17: 0
+    - _Float18: 1
+    - _Float19: 1
+    - _Float2: 30
+    - _Float20: 0.5
+    - _Float21: 1
+    - _Float3: 0.019
+    - _Float4: 45.6
+    - _Float5: 0.2
+    - _Float6: 30.98
+    - _Float7: 0.1
+    - _Float8: 59.8
+    - _FlowTiling: 1
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HardCrackRatio: 0.019
+    - _HardCrackScale: 1.5
+    - _HardCrackTiling: 10
+    - _LavaCrackHeight: 61.6
+    - _LavaDisplacementHeight: 30
+    - _LavaDisplacementSpeed: 0.03
+    - _LavaFlowTiling: 10
+    - _LavaMax: 9.7
+    - _LavaNormalScale: 1
+    - _LavaNormalTiling: 25.05
+    - _LavacrackTransitionRatio: 0.2
+    - _Lavamin: -30
+    - _MagmaNormalTiling: 100
+    - _MagmaTiling: 120
+    - _MagmaTransitionHeight: -20.4
+    - _MagmaTransitionRatio: 0.017
+    - _Magmaintensity: 0.05
+    - _Magmascale: 0.5
+    - _Magmaspeed: 0.02
+    - _MainDisplacementHeight: 29.93
+    - _MainDisplacementSpeed: 0.01
+    - _Metallic: 0.5
+    - _Mode: 0
+    - _NormalTransitionHeight: 50.8
+    - _NormalTransitionRatio: 0.5
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Smoothness: 0.068
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _Speed: 0.03
+    - _SrcBlend: 1
+    - _Steepness: 0.0005
+    - _SurfaceTransitionHeight: 39.8
+    - _SurfaceTransitionRatio: 0.06
+    - _TessMax: 350
+    - _TessMin: 1
+    - _TessValue: 4.7
+    - _Tiling: 2.32
+    - _UVSec: 0
+    - _Wavelength: 140
+    - _ZWrite: 1
+    - __dirty: 1
+    - _numofwaves: 10
+    - _speed2: 0.001
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 1, g: 0, b: 0, a: 1}
+    - _Color1: {r: 0, g: 0, b: 0, a: 0}
+    - _Color2: {r: 0.3897059, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LavaFlowDirection: {r: 0.2, g: 0.05, b: 0, a: 0}
+    - _Vector0: {r: 0.13, g: 2.24, b: 0, a: 0}
+    - _Vector1: {r: 0.52, g: 0.55, b: 0, a: 0}
+    - _Vector2: {r: 1, g: 1, b: 1, a: 0}

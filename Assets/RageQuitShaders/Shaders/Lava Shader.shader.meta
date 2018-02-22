@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8a8f18361a64b8042a5b6d5b108592a4
+timeCreated: 1519261678
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _LavaNormal: {fileID: 2800000, guid: 307a7e878a914924db21e801600212a9, type: 3}
+  - _LavaFlowTexture: {fileID: 2800000, guid: ff79832ae24f5cb4194893a62ca922f8, type: 3}
+  - _FireFlowTexture: {fileID: 2800000, guid: d058b7eae73a535499d2951b0a32285e, type: 3}
+  - _CrackLavaTexture: {fileID: 2800000, guid: 71c040c802cfcab45848488ab440431d, type: 3}
+  - _HardCrackTexture: {fileID: 2800000, guid: a17913244e8a35a4da19c74d9e648c10, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
