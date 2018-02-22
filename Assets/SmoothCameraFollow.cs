@@ -37,6 +37,8 @@ public class SmoothCameraFollow : MonoBehaviour {
 
         Vector3 targetMidpoint = Vector3.Lerp(lastTargetPosition, targetPosition, GameUtil.LerpSmooth(0.25f));
 
+        Vector3 followMidpointWithRaycast = followMidpoint;
+
         //Raycast for follow position midpoint
         Debug.DrawRay(targetMidpoint, followMidpoint - targetMidpoint);
         RaycastHit hit;
@@ -44,15 +46,15 @@ public class SmoothCameraFollow : MonoBehaviour {
         {
             //We hit an object
             Vector3 hitPosition = hit.point;
-            followMidpoint = hitPosition + (targetMidpoint - followMidpoint) * objectCollisionBufferSize;
+            followMidpointWithRaycast = hitPosition + hit.normal * objectCollisionBufferSize;
         }
 
         //SET POSITIONS
-        transform.position = followMidpoint;
+        transform.position = followMidpointWithRaycast;
         transform.LookAt(targetMidpoint);
 
         //Update last variables
         lastTargetPosition = targetMidpoint;
-        lastFollowPosition = transform.position;
+        lastFollowPosition = followMidpoint;
     }
 }
