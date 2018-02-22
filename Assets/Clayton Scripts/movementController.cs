@@ -23,6 +23,9 @@ public class movementController : MonoBehaviour {
     public float flapDuration = 1.0f;
     float flapProgress = 100000.0f;
 
+    public float maxSpeed = 60.0f;
+    public float pullUpRange = 45.0f;
+
     // Use this for initialization
     void Start () {
         GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * 600.0f);
@@ -59,7 +62,28 @@ public class movementController : MonoBehaviour {
 
         transform.rotation *= Quaternion.AngleAxis(target.z, /*transform.rotation **/ new Vector3(0, 0, 1));
 
-        float additionalXFromBanking = Mathf.Abs(transform.rotation.z) * 0.85f;
+
+        float zRotation = transform.rotation.eulerAngles.z;
+        //zRotation %= 180.0f;
+
+        float additionalXFromBanking;
+
+        //if (90.0f - pullUpRange <= Mathf.Abs(zRotation) && Mathf.Abs(zRotation) <= 90.0f + pullUpRange)
+        //{
+        //    additionalXFromBanking = Mathf.Abs(zRotation) * 0.002f;
+        //}
+        //else
+        //{
+        //    additionalXFromBanking = 0.0f;
+        //}
+
+        float bankFactor = Math.Max(0.0f,
+            1.0f - Mathf.Pow((zRotation - 180) / (90 + pullUpRange), 2.0f)
+            );
+        additionalXFromBanking = bankFactor * 2.0f;
+
+        Debug.Log(Mathf.Abs(zRotation));
+        
 
         transform.rotation *= Quaternion.AngleAxis(target.x - additionalXFromBanking, /*transform.rotation **/ new Vector3(1, 0, 0));
 
@@ -121,6 +145,12 @@ public class movementController : MonoBehaviour {
 
         //GetComponent<Rigidbody>().AddForce(transform.rotation * new Vector3(0, 0, 1) /*liftVector*/ * forceInLookDir);
         //GetComponent<Rigidbody>().AddForce(new Vector3(0, -1, 0) * forceInDownDir);
+
+        float desiredSpeed = Mathf.Min(maxSpeed, GetComponent<Rigidbody>().velocity.magnitude);
+
+        Vector3 CompenVec = ((transform.rotation * new Vector3(0, 0, 1) * desiredSpeed) - GetComponent<Rigidbody>().velocity) * 0.5f;
+        
+        GetComponent<Rigidbody>().velocity += CompenVec;
     }
 
     Vector3 calculateL()
