@@ -22,10 +22,15 @@ public class movementController : MonoBehaviour {
 
     public float flapDuration = 1.0f;
     float flapProgress = 100000.0f;
-
-    public float maxSpeed = 60.0f;
-    public float pullUpRange = 45.0f;
     public float flapForce = 12.0f;
+
+    public float brakeDuration = 1.0f;
+    float brakeProgress = 100000.0f;
+    public float brakeForce = 12.0f;
+
+    public float maxSpeedXZPlane = 60.0f;
+    public float pullUpRange = 45.0f;
+
     public float horRotConstant = 4.0f;
     public float verRotConstant = 2.0f;
 
@@ -109,7 +114,7 @@ public class movementController : MonoBehaviour {
         {
             flapProgress += Time.fixedDeltaTime;
 
-            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.25f, 1.0f)) * flapFunc(flapProgress / flapDuration) * flapForce);
+            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0, 1.0f)) * flapFunc(flapProgress / flapDuration) * flapForce);
         }
         else
         {
@@ -117,6 +122,21 @@ public class movementController : MonoBehaviour {
             {
                 animator.SetTrigger("Flapped");
                 flapProgress = 0.0f;
+            }
+        }
+
+        if (brakeProgress <= brakeDuration)
+        {
+            brakeProgress += Time.fixedDeltaTime;
+
+            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0, -1.0f)) * flapFunc(brakeProgress / brakeDuration) * brakeForce);
+        }
+        else
+        {
+            if (Input.GetButtonDown("Brake"))
+            {
+                animator.SetTrigger("Flapped");
+                brakeProgress = 0.0f;
             }
         }
 
@@ -149,23 +169,71 @@ public class movementController : MonoBehaviour {
         //GetComponent<Rigidbody>().AddForce(transform.rotation * new Vector3(0, 0, 1) /*liftVector*/ * forceInLookDir);
         //GetComponent<Rigidbody>().AddForce(new Vector3(0, -1, 0) * forceInDownDir);
 
-        float desiredSpeed = Mathf.Min(maxSpeed, GetComponent<Rigidbody>().velocity.magnitude);
+        Vector3 velocity2 = GetComponent<Rigidbody>().velocity;
+        velocity2.y = 0;
+        if (velocity2.magnitude > 5.0f)
+        {
+            compensateXZ();
+        }
+        //compensateY();
 
-        Vector3 CompenVec = ((transform.rotation * new Vector3(0, 0, 1) * desiredSpeed) - GetComponent<Rigidbody>().velocity) * 0.5f;
-        
-        GetComponent<Rigidbody>().velocity += CompenVec;
-
-
-
-        //Vector3 velocity = GetComponent<Rigidbody>().velocity;
-        //velocity.y = 0;
+        //
+        //
         //Debug.Log(velocity);
         //GetComponent<Rigidbody>().AddForce(-velocity * 1.0f);
 
 
+        Vector3 velocity = GetComponent<Rigidbody>().velocity;
+        velocity.y = 0;
+        GetComponent<Rigidbody>().AddForce(20.0f * Physics.gravity * (1.0f / (velocity.magnitude + 10.0f)));
 
-        GetComponent<Rigidbody>().AddForce(0.3f * Physics.gravity);
+        Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
     }
+
+    void compensateXZ()
+    {
+        //COMPENSATE ONLY IN XZ PLANE
+        Vector3 lookDirection = transform.rotation * new Vector3(0, 0, 1);
+        //lookDirection.y = 0;
+        //lookDirection.Normalize();
+
+        Vector3 velocity = GetComponent<Rigidbody>().velocity;
+        //velocity.y = 0.0f;
+
+        float desiredSpeed = Mathf.Min(maxSpeedXZPlane,
+            //velocity.magnitude
+            Mathf.Sqrt(
+                Mathf.Pow(velocity.y, 2.0f) 
+                + Mathf.Pow(velocity.x, 2.0f)
+                + Mathf.Pow(velocity.z, 2.0f)
+            )
+        );
+
+
+        Vector3 CompenVec = ((lookDirection * desiredSpeed) - velocity) * 0.5f;
+
+        GetComponent<Rigidbody>().velocity += CompenVec;
+        
+        //Debug.Log(CompenVec);
+    }
+
+    //void compensateY()
+    //{
+    //    //COMPENSATE ONLY IN Y DIR
+    //    Vector3 lookDirection = transform.rotation * new Vector3(0, 0, 1);
+
+    //    float velocityY = GetComponent<Rigidbody>().velocity.y;
+
+    //    float s = velocityY - 0.3f * Physics.gravity.magnitude;
+
+
+    //    Vector3 CompenVecY = ((lookDirectionInYPlane * s) - velocityY * new Vector3(0, 1.0f, 0)) * 0.5f;
+
+    //    GetComponent<Rigidbody>().velocity += CompenVecY;
+
+    //    Debug.Log("Y:");
+    //    Debug.Log(CompenVecY);
+    //}
 
     Vector3 calculateL()
     {

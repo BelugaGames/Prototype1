@@ -336,9 +336,11 @@ MonoBehaviour:
   lookDirForceConstant: 10
   downDirForceConstant: 10
   flapDuration: 0.5
-  maxSpeed: 60
-  pullUpRange: 45
   flapForce: 20
+  brakeDuration: 1
+  brakeForce: 30
+  maxSpeedXZPlane: 600
+  pullUpRange: 45
   horRotConstant: 4
   verRotConstant: 2
   animator: {fileID: 368016862}
