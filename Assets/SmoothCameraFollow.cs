@@ -34,7 +34,6 @@ public class SmoothCameraFollow : MonoBehaviour {
 
         //FIND MIDPOINT POSITIONS
         Vector3 followMidpoint = Vector3.Lerp(lastFollowPosition, followPosition, GameUtil.LerpSmooth(0.25f));
-
         Vector3 targetMidpoint = Vector3.Lerp(lastTargetPosition, targetPosition, GameUtil.LerpSmooth(0.25f));
 
         Vector3 followMidpointWithRaycast = followMidpoint;
