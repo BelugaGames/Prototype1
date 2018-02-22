@@ -113,6 +113,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &26813575 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 4cbf62af2ba14d54aa0822a301a592cf, type: 3}
+  m_PrefabInternal: {fileID: 832353490}
+--- !u!64 &26813579
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 26813575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 4cbf62af2ba14d54aa0822a301a592cf, type: 3}
 --- !u!1 &67536032 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1286003909606734, guid: 537962e25f141f849ab5e7b7dabb220f,
@@ -316,6 +334,7 @@ MonoBehaviour:
   targetObject: {fileID: 1055951438}
   targetOffset: {x: 0, y: 0, z: 0}
   followOffset: {x: 0, y: 2, z: -5}
+  objectCollisionBufferSize: 1
 --- !u!1001 &832353490
 Prefab:
   m_ObjectHideFlags: 0
