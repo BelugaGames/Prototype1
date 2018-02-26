@@ -7,6 +7,9 @@ public class HoopController : MonoBehaviour {
     [SerializeField]
     public LevelManager levelManager;
 
+    [SerializeField]
+    public int requiredSpeedLevel = 0;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +23,11 @@ public class HoopController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            levelManager.points += 1;
+        {
+            int playerSpeedLevel = LevelManager.getSpeedLevel(other.GetComponent<Rigidbody>().velocity.magnitude);
+
+            if (playerSpeedLevel >= requiredSpeedLevel)
+                levelManager.points += 1;
+        }
     }
 }
