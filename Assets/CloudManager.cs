@@ -11,22 +11,31 @@ public class CloudManager : MonoBehaviour
     [SerializeField]
     GameObject cloudParticleObj;
 
-    SimplexNoiseGenerator simplexNoise;
+    [SerializeField]
+    Vector3 cloudSize;
 
     // Use this for initialization
     void Start()
     {
-        simplexNoise = new SimplexNoiseGenerator();
-
-        for (float x = 0; x < 10; x += step)
+        for (float x = -cloudSize.x / 2; x < cloudSize.x / 2; x += step)
         {
-            for (float y = 0; y < 10; y += step)
+            float densityX = Mathf.Abs(x) / (cloudSize.x / 2.0f);
+
+            for (float z = -cloudSize.z / 2; z < cloudSize.z / 2; z += step)
             {
-                for (float z = 0; z < 10; z += step)
+                float densityZ = Mathf.Abs(z) / (cloudSize.z / 2.0f);
+
+                float h = Mathf.PerlinNoise(x, z);
+                for (float y = -cloudSize.y / 2; y < h * cloudSize.y / 2; y += step)
                 {
-                    int density = simplexNoise.getDensity(new Vector3(x, y, z));
-                    Debug.Log(density);
-                    if (density > 127)
+                    float densityY = Mathf.Abs(y) / (cloudSize.y / 2.0f);
+
+                    float densityAvg = Mathf.Max(densityX * densityX, densityY * densityY, densityZ * densityZ);
+                    Debug.Log(densityAvg);
+
+                    densityAvg = 1.0f - densityAvg;
+
+                    if (Random.Range(0.0f, 1.0f) < 0.33f * densityAvg)
                     {
                         GameObject.Instantiate(cloudParticleObj, transform.position + new Vector3(x, y, z), Quaternion.identity, transform);
                     }
