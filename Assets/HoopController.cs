@@ -27,7 +27,10 @@ public class HoopController : MonoBehaviour {
             int playerSpeedLevel = levelManager.getSpeedLevel(other.GetComponent<Rigidbody>().velocity.magnitude);
 
             if (playerSpeedLevel >= requiredSpeedLevel)
+            {
                 levelManager.points += 1;
+                GameObject.Destroy(gameObject);
+            }
         }
 
         Debug.Log("Hoop triggered");
