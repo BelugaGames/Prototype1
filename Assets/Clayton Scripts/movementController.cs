@@ -67,7 +67,7 @@ public class movementController : MonoBehaviour {
         additionalXFromBanking = bankFactor * 2.0f;
         
         transform.rotation *= Quaternion.AngleAxis(target.x - additionalXFromBanking, new Vector3(1, 0, 0));
-        
+
         liftVector = calculateL();
         liftCoefficient = calculateLCoefficient(GetComponent<Rigidbody>().velocity, liftVector);
         liftMagnitude = calculateLMag(GetComponent<Rigidbody>().velocity.magnitude);
@@ -125,7 +125,33 @@ public class movementController : MonoBehaviour {
         velocity.y = 0;
         GetComponent<Rigidbody>().AddForce(20.0f * Physics.gravity * (1.0f / (velocity.magnitude + 10.0f)));
 
-        Debug.Log(velocity.magnitude);
+        Vector3 locE = transform.localEulerAngles;
+
+        // clamping z rotation
+        if (locE.z > 90.0f && locE.z < 100.0f)
+        {
+            transform.localEulerAngles = new Vector3(locE.x, locE.y, 90.0f);
+        }
+        if (locE.z < 270.0f && locE.z > 200.0f)
+        {
+            transform.localEulerAngles = new Vector3(locE.x, locE.y, 270.0f);
+        }
+
+        locE = transform.localEulerAngles;
+
+        // correcting rotation
+        if (locE.z > 2 && locE.z < 100.0f)
+        {
+            transform.localEulerAngles = new Vector3(locE.x, locE.y, locE.z - 2.0f);
+        }
+        if (locE.z < 360 - 2 && locE.z > 200.0f)
+        {
+            transform.localEulerAngles = new Vector3(locE.x, locE.y, locE.z + 2.0f);
+        }
+
+        Debug.Log(locE.z);
+
+        //Debug.Log(velocity.magnitude);
         
         followCamera.followOffset = new Vector3(0, 0, -10) +
             new Vector3(0, 0, -0.5f) * (GetComponent<Rigidbody>().velocity.magnitude / 4);
