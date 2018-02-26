@@ -9,13 +9,17 @@ public class LevelManager : MonoBehaviour {
     public int points = 0;
 
     [SerializeField]
-    private Text text;
+    private Text pointsText,
+        speedText;
 
     [SerializeField]
     private float 
         speedStage1 = 10.0f,
         speedStage2 = 30.0f,
         speedStage3 = 50.0f;
+
+    [SerializeField]
+    private Rigidbody player;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +28,8 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        text.text = "Points: " + points.ToString();
+        pointsText.text = "Points: " + points.ToString();
+        speedText.text = "Speed: " + getSpeedLevel(player.GetComponent<Rigidbody>().velocity.magnitude).ToString();
 	}
 
     public int getSpeedLevel(float velocity)
