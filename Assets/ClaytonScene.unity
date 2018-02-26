@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smooth: 2
-  tiltAngle: 60
+  tiltAngle: 90
   liftCoefficient: 0
   liftMagnitude: 1
   lMagConstant: 10
