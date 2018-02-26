@@ -393,6 +393,16 @@ Prefab:
       propertyPath: camera1
       value: 
       objectReference: {fileID: 374358203}
+    - target: {fileID: 114178786882100734, guid: 8a03900d2632a3b4c9346d48a0fa15d4,
+        type: 2}
+      propertyPath: horRotConstant
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114178786882100734, guid: 8a03900d2632a3b4c9346d48a0fa15d4,
+        type: 2}
+      propertyPath: maxSpeedXZPlane
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a03900d2632a3b4c9346d48a0fa15d4, type: 2}
   m_IsPrefabParent: 0
