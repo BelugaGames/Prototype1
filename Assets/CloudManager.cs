@@ -14,6 +14,9 @@ public class CloudManager : MonoBehaviour
     [SerializeField]
     Vector3 cloudSize;
 
+    [SerializeField]
+    private Transform player;
+
     // Use this for initialization
     void Start()
     {
@@ -37,7 +40,8 @@ public class CloudManager : MonoBehaviour
 
                     if (Random.Range(0.0f, 1.0f) < 0.33f * densityAvg)
                     {
-                        GameObject.Instantiate(cloudParticleObj, transform.position + new Vector3(x, y, z), Quaternion.identity, transform);
+                        var particle = GameObject.Instantiate(cloudParticleObj, transform.position + new Vector3(x, y, z), Quaternion.identity, transform);
+                        particle.GetComponent<CloudParticleController>().player = player;
                     }
                 }
             }

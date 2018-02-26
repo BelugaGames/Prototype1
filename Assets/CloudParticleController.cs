@@ -9,9 +9,8 @@ public class CloudParticleController : MonoBehaviour {
 
     [SerializeField]
     public float radius = 0.4f;
-
-    [SerializeField]
-    private Transform player;
+    
+    public Transform player;
 
     private Vector3 velocity;
 

@@ -1120,6 +1120,7 @@ MonoBehaviour:
   cloudParticleObj: {fileID: 1750896088312168, guid: 814f1cfd30328374fb0b1d8b86c911e7,
     type: 2}
   cloudSize: {x: 15, y: 10, z: 15}
+  player: {fileID: 388696355}
 --- !u!1 &1604773375
 GameObject:
   m_ObjectHideFlags: 0
