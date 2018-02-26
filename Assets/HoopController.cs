@@ -24,7 +24,7 @@ public class HoopController : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            int playerSpeedLevel = LevelManager.getSpeedLevel(other.GetComponent<Rigidbody>().velocity.magnitude);
+            int playerSpeedLevel = levelManager.getSpeedLevel(other.GetComponent<Rigidbody>().velocity.magnitude);
 
             if (playerSpeedLevel >= requiredSpeedLevel)
                 levelManager.points += 1;

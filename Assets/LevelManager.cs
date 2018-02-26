@@ -9,7 +9,13 @@ public class LevelManager : MonoBehaviour {
     public int points = 0;
 
     [SerializeField]
-    public Text text;
+    private Text text;
+
+    [SerializeField]
+    private float 
+        speedStage1 = 10.0f,
+        speedStage2 = 30.0f,
+        speedStage3 = 50.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -21,16 +27,11 @@ public class LevelManager : MonoBehaviour {
         text.text = "Points: " + points.ToString();
 	}
 
-    public static int getSpeedLevel(float velocity)
+    public int getSpeedLevel(float velocity)
     {
-        if (velocity < 10) return 0;
-        if (velocity < 30) return 1;
-        if (velocity < 50) return 2;
-        if (velocity < 70) return 3;
-        else return 4;
-        //10
-        //30
-        //50
-        //70
+        if (velocity < speedStage1) return 0;
+        if (velocity < speedStage2) return 1;
+        if (velocity < speedStage3) return 2;
+        else return 3;
     }
 }
