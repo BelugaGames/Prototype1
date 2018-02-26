@@ -29,5 +29,7 @@ public class HoopController : MonoBehaviour {
             if (playerSpeedLevel >= requiredSpeedLevel)
                 levelManager.points += 1;
         }
+
+        Debug.Log("Hoop triggered");
     }
 }
