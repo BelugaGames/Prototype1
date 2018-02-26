@@ -7,10 +7,10 @@ public class SmoothCameraFollow : MonoBehaviour {
     private Transform targetObject;
 
     [SerializeField]
-    private Vector3 targetOffset;
+    public Vector3 targetOffset;
 
     [SerializeField]
-    private Vector3 followOffset;
+    public Vector3 followOffset;
 
     [SerializeField]
     private float objectCollisionBufferSize = 1.0f;
