@@ -785,21 +785,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-<<<<<<< HEAD
   pointsText: {fileID: 1604773377}
   speedText: {fileID: 151042899}
-=======
-<<<<<<< HEAD
-  text: {fileID: 1604773377}
-=======
-  pointsText: {fileID: 0}
-  speedText: {fileID: 0}
->>>>>>> 6da4b9a0012f639c3b702ea5fc94694a0373a272
   speedStage1: 10
   speedStage2: 30
   speedStage3: 50
   player: {fileID: 388696356}
->>>>>>> 15e65671de37a5ff8b27e5557b97c0d1b2d13b4c
 --- !u!4 &460904231
 Transform:
   m_ObjectHideFlags: 0
