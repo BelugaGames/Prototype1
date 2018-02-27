@@ -34,26 +34,30 @@ public class CloudManager : MonoBehaviour
 
         for (float x = -cloudSize.x / 2; x < cloudSize.x / 2; x += step)
         {
-            //float densityX = Mathf.Abs(x) / (cloudSize.x / 2.0f);
+            float distX = Mathf.Abs(x);
 
             for (float z = -cloudSize.z / 2; z < cloudSize.z / 2; z += step)
             {
-                //float densityZ = Mathf.Abs(z) / (cloudSize.z / 2.0f);
+                float distZ = Mathf.Abs(z);
 
                 float n = Mathf.PerlinNoise(-x * 25.01f, -z * 25.01f);
                 Debug.Log(n);
-                if (n < 0.75) continue;
+                //if (n < 0.75) continue;
 
-                float h = 1.0f;// Mathf.PerlinNoise(x * 25.01f, z * 25.01f);
-                for (float y = -cloudSize.y / 2; y < h * cloudSize.y / 2; y += step)
+                if (distX * distX + distZ * distZ > Mathf.Pow(cloudSize.x / 2, 2.0f)) continue;
+
+                float h = Mathf.PerlinNoise(x * 50.01f, z * 50.01f);
+                for (float y = 0; y < h * cloudSize.y; y += step)
                 {
-                    //float densityY = Mathf.Abs(y) / (cloudSize.y / 2.0f);
+                    float densityY = Mathf.Abs(y) / (cloudSize.y / 2.0f);
+
 
                     //float densityAvg = Mathf.Max(densityX * densityX, densityY * densityY, densityZ * densityZ);
 
-                    //densityAvg = 1.0f - densityAvg;
+                    // densityAvg = 1.0f - densityAvg;
 
-                    if (Random.Range(0.0f, 1.0f) < 1.0f/* * densityAvg*/)
+
+                    if (Random.Range(0.0f, 1.0f) < 1.0f)
                     {
                         var particle = GameObject.Instantiate(cloudParticleObj, transform.position + new Vector3(x, y, z), Quaternion.identity, transform);
                         particle.transform.localScale = new Vector3(particleSize, particleSize, particleSize);

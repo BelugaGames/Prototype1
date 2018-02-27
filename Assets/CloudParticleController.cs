@@ -20,6 +20,13 @@ public class CloudParticleController : MonoBehaviour, IQuadTreeObject {
  //       timeOffset = Random.Range(0.0f, 10.0f);
  //       updateThisFrame = Random.value < 0.5f;
 	//}
+
+    void Start()
+    {
+        float randScale = Random.Range(0.5f, 1.5f);
+        GetComponent<MeshRenderer>().material.SetFloat("_ScaleX", transform.localScale.x * randScale);
+        GetComponent<MeshRenderer>().material.SetFloat("_ScaleY", transform.localScale.y * randScale);
+    }
 	
 	// Update is called once per frame
 	//void Update () {
