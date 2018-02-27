@@ -19,6 +19,7 @@ public class HoopController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        levelManager.numHoops++;
 
 		if (requiredSpeedLevel == 1)
         {
