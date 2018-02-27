@@ -1228,3 +1228,95 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4da62aa5a8e4c7448a0301ad8d335a70, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1711077417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1711077419}
+  - component: {fileID: 1711077418}
+  m_Layer: 0
+  m_Name: CloudManager (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1711077418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711077417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2316802173b0c1549ad97847436a5130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: 2
+  cloudParticleObj: {fileID: 1750896088312168, guid: 814f1cfd30328374fb0b1d8b86c911e7,
+    type: 2}
+  cloudSize: {x: 50, y: 10, z: 50}
+  player: {fileID: 388696355}
+  particleSize: 5
+--- !u!4 &1711077419
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711077417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -355, y: 223.1, z: -465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2007311426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2007311428}
+  - component: {fileID: 2007311427}
+  m_Layer: 0
+  m_Name: CloudManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2007311427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2007311426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2316802173b0c1549ad97847436a5130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: 2
+  cloudParticleObj: {fileID: 1750896088312168, guid: 814f1cfd30328374fb0b1d8b86c911e7,
+    type: 2}
+  cloudSize: {x: 50, y: 10, z: 50}
+  player: {fileID: 388696355}
+  particleSize: 5
+--- !u!4 &2007311428
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2007311426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -147.4, y: 223.1, z: 107.63185}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
