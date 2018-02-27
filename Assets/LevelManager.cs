@@ -21,6 +21,9 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     private Rigidbody player;
 
+    [SerializeField]
+    public int numHoops = 0;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -30,6 +33,11 @@ public class LevelManager : MonoBehaviour {
 	void Update () {
         pointsText.text = "Points: " + points.ToString();
         speedText.text = "Speed: " + getSpeedLevel(player.GetComponent<Rigidbody>().velocity.magnitude).ToString();
+
+        if (points >= numHoops)
+        {
+            //Player WON!
+        }
 	}
 
     public int getSpeedLevel(float velocity)
