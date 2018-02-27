@@ -28,6 +28,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("GameplayScene");
     }
 
+    public void LoadWin()
+    {
+        SceneManager.LoadScene("Win Scene");
+    }
+
     public void LoadTutorial()
     {
         SceneManager.LoadScene("Tutorial");

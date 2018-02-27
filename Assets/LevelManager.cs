@@ -24,6 +24,9 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     public int numHoops = 0;
 
+    [SerializeField]
+    private GameObject butMan;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -36,7 +39,7 @@ public class LevelManager : MonoBehaviour {
 
         if (points >= numHoops)
         {
-            //Player WON!
+            butMan.GetComponent<ButtonManager>().LoadWin();
         }
 	}
 
