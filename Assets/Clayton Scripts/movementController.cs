@@ -51,20 +51,10 @@ public class movementController : MonoBehaviour {
 
     private float fov = 0.0f;
 
-    private float timerL;
-    private int counterL;
-    private float timerR;
-    private int counterR;
-
-    bool canCountL;
-    bool canCountR;
-
     // Use this for initialization
     void Start () {
         GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * 600.0f);
         fov = Camera.main.fieldOfView;
-        counterL = 0;
-        counterR = 0;
     }
 
     // Update is called once per frame
