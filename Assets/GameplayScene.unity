@@ -1075,7 +1075,7 @@ MonoBehaviour:
   - {fileID: 1499926195635910, guid: fea1d211c259fe24bb106a2a9bd9e236, type: 2}
   cloudSize: {x: 50, y: 10, z: 50}
   player: {fileID: 388696355}
-  particleSize: 200
+  particleSize: []
 --- !u!4 &729014889
 Transform:
   m_ObjectHideFlags: 0
@@ -1612,9 +1612,14 @@ MonoBehaviour:
   - {fileID: 1499926195635910, guid: fea1d211c259fe24bb106a2a9bd9e236, type: 2}
   - {fileID: 1752196589656736, guid: 704824b9212a1a14fbbfe1433aadbe4a, type: 2}
   - {fileID: 1662382400244954, guid: 58be6b1f7492ce748a5b354531332bb1, type: 2}
+  - {fileID: 1750896088312168, guid: 814f1cfd30328374fb0b1d8b86c911e7, type: 2}
   cloudSize: {x: 10, y: 1.5, z: 6}
   player: {fileID: 388696355}
-  particleSize: 250
+  particleSize:
+  - 250
+  - 250
+  - 250
+  - 5
 --- !u!1 &1604773375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,9 +1850,9 @@ MonoBehaviour:
   step: 0.75
   cloudParticleObjs:
   - {fileID: 1750896088312168, guid: 814f1cfd30328374fb0b1d8b86c911e7, type: 2}
-  cloudSize: {x: 10, y: 1.5, z: 6}
+  cloudSize: {x: 15, y: 3, z: 10}
   player: {fileID: 388696355}
-  particleSize: 250
+  particleSize: []
 --- !u!4 &1671401026
 Transform:
   m_ObjectHideFlags: 0
@@ -1956,7 +1961,7 @@ MonoBehaviour:
   cloudParticleObjs: []
   cloudSize: {x: 50, y: 10, z: 50}
   player: {fileID: 388696355}
-  particleSize: 5
+  particleSize: []
 --- !u!4 &1711077419
 Transform:
   m_ObjectHideFlags: 0
@@ -5509,7 +5514,7 @@ MonoBehaviour:
   cloudParticleObjs: []
   cloudSize: {x: 50, y: 10, z: 50}
   player: {fileID: 388696355}
-  particleSize: 5
+  particleSize: []
 --- !u!4 &2007311428
 Transform:
   m_ObjectHideFlags: 0
