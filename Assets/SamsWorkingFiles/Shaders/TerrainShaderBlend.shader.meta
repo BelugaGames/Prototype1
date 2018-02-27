@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: bed7327bab7ffb540ae2886187bcfedf
+timeCreated: 1519765618
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MossGraph_normal: {fileID: 2800000, guid: 0a9579ab4cb27ac45ace18ba1d20e748, type: 3}
+  - _Sand_normal: {fileID: 2800000, guid: 836065398c0efef48a83703cac0ef383, type: 3}
+  - _Soil_normal: {fileID: 2800000, guid: af50f7d21068675418df405cd95f4bf5, type: 3}
+  - _New_Graph_normal: {fileID: 2800000, guid: a3f0299dc2f71cc4dadbb7312f4e4632, type: 3}
+  - _MossGraph_basecolor: {fileID: 2800000, guid: f0f89dbc485cc344084c480b227b75d7,
+      type: 3}
+  - _Sand_basecolor: {fileID: 2800000, guid: fe59ad8b1c3884a449991d700114e2e6, type: 3}
+  - _Soil_basecolor: {fileID: 2800000, guid: 45d13bddffb0d9640ab37af679ac2ca7, type: 3}
+  - _New_Graph_basecolor: {fileID: 2800000, guid: 0bf2c9c08b891074d8bfb96ec4a1bf89,
+      type: 3}
+  - _MossGraph_roughness: {fileID: 2800000, guid: 44b3e392d8e62f948963ce793f9d691b,
+      type: 3}
+  - _Sand_roughness: {fileID: 2800000, guid: 23ccbdd5f7e785a4a8108181d2577cd4, type: 3}
+  - _Soil_roughness: {fileID: 2800000, guid: 0e368f063d15a054c924c597a090d53b, type: 3}
+  - _New_Graph_roughness: {fileID: 2800000, guid: e40d63cb2158f8541b49cfa1beebfccc,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
