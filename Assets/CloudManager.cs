@@ -18,7 +18,7 @@ public class CloudManager : MonoBehaviour
     private Transform player;
 
     [SerializeField]
-    private float particleSize;
+    private float[] particleSize;
 
     private QuadTree<CloudParticleController> cloudQT;
     private float particleCollisionDist2;
@@ -28,7 +28,7 @@ public class CloudManager : MonoBehaviour
     {
         cloudQT = new QuadTree<CloudParticleController>(10, new Rect(-1500, -1500, 1500 * 2, 1500 * 2));
 
-        particleCollisionDist2 = 0.4f * particleSize;
+        particleCollisionDist2 = 0.4f * particleSize[0];
         particleCollisionDist2 *= particleCollisionDist2;
 
 
@@ -59,13 +59,17 @@ public class CloudManager : MonoBehaviour
 
                     if (Random.Range(0.0f, 1.0f) < 1.0f)
                     {
-                        var particlePrefab = cloudParticleObjs[(int)Random.Range(0.0f, (float)cloudParticleObjs.Length - 0.00001f)];
+                        int particleIndex = (int)Random.Range(0.0f, (float)cloudParticleObjs.Length - 0.00001f);
+                        var particlePrefab = cloudParticleObjs[particleIndex];
 
-                        var randomVec = Random.insideUnitSphere * particleSize;
+                        var randomVec = Random.insideUnitSphere * 5.0f;
 
                         var particle = GameObject.Instantiate(particlePrefab, transform.position + new Vector3(x, y, z) + randomVec, Random.rotation, transform);
                         
-                        particle.transform.localScale = new Vector3(particleSize, particleSize, particleSize);
+                        particle.transform.localScale = new Vector3(
+                            particleSize[particleIndex] * Random.Range(0.5f, 1.5f), 
+                            particleSize[particleIndex] * Random.Range(0.5f, 1.5f), 
+                            particleSize[particleIndex] * Random.Range(0.5f, 1.5f));
                         var cloudParticleController = particle.GetComponent<CloudParticleController>();
                         //cloudParticleController.player = player;
                         cloudQT.Insert(cloudParticleController);

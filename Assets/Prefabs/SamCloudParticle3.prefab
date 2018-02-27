@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33232575229294034}
   - component: {fileID: 23061609386564420}
   - component: {fileID: 95193933942570038}
+  - component: {fileID: 114456693792649308}
   m_Layer: 0
   m_Name: SamCloudParticle3
   m_TagString: Untagged
@@ -100,3 +101,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114456693792649308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662382400244954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e150431cc96fb46b8ff7651200b1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
