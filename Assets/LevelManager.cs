@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour {
         pointsText.text = "Points: " + points.ToString();
         speedText.text = "Speed: " + getSpeedLevel(player.GetComponent<Rigidbody>().velocity.magnitude).ToString();
 
-        if (points >= numHoops)
+        if (points >= numHoops && numHoops != 0)
         {
             butMan.GetComponent<ButtonManager>().LoadWin();
         }
