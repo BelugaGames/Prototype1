@@ -17,31 +17,49 @@ public class CloudManager : MonoBehaviour
     [SerializeField]
     private Transform player;
 
+    [SerializeField]
+    private float particleSize;
+
+    private QuadTree<CloudParticleController> cloudQT;
+    private float particleCollisionDist2;
+
     // Use this for initialization
     void Start()
     {
+        cloudQT = new QuadTree<CloudParticleController>(10, new Rect(-1300, -1300, 1300 * 2, 1300 * 2));
+
+        particleCollisionDist2 = 0.4f * particleSize;
+        particleCollisionDist2 *= particleCollisionDist2;
+
+
         for (float x = -cloudSize.x / 2; x < cloudSize.x / 2; x += step)
         {
-            float densityX = Mathf.Abs(x) / (cloudSize.x / 2.0f);
+            //float densityX = Mathf.Abs(x) / (cloudSize.x / 2.0f);
 
             for (float z = -cloudSize.z / 2; z < cloudSize.z / 2; z += step)
             {
-                float densityZ = Mathf.Abs(z) / (cloudSize.z / 2.0f);
+                //float densityZ = Mathf.Abs(z) / (cloudSize.z / 2.0f);
 
-                float h = Mathf.PerlinNoise(x, z);
+                float n = Mathf.PerlinNoise(-x * 25.01f, -z * 25.01f);
+                Debug.Log(n);
+                if (n < 0.75) continue;
+
+                float h = 1.0f;// Mathf.PerlinNoise(x * 25.01f, z * 25.01f);
                 for (float y = -cloudSize.y / 2; y < h * cloudSize.y / 2; y += step)
                 {
-                    float densityY = Mathf.Abs(y) / (cloudSize.y / 2.0f);
+                    //float densityY = Mathf.Abs(y) / (cloudSize.y / 2.0f);
 
-                    float densityAvg = Mathf.Max(densityX * densityX, densityY * densityY, densityZ * densityZ);
-                    Debug.Log(densityAvg);
+                    //float densityAvg = Mathf.Max(densityX * densityX, densityY * densityY, densityZ * densityZ);
 
-                    densityAvg = 1.0f - densityAvg;
+                    //densityAvg = 1.0f - densityAvg;
 
-                    if (Random.Range(0.0f, 1.0f) < 0.33f * densityAvg)
+                    if (Random.Range(0.0f, 1.0f) < 1.0f/* * densityAvg*/)
                     {
                         var particle = GameObject.Instantiate(cloudParticleObj, transform.position + new Vector3(x, y, z), Quaternion.identity, transform);
-                        particle.GetComponent<CloudParticleController>().player = player;
+                        particle.transform.localScale = new Vector3(particleSize, particleSize, particleSize);
+                        var cloudParticleController = particle.GetComponent<CloudParticleController>();
+                        //cloudParticleController.player = player;
+                        cloudQT.Insert(cloudParticleController);
                     }
                 }
             }
@@ -52,5 +70,28 @@ public class CloudManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 playerPosition = player.transform.position;
+        const float bufferSize = 5.0f;
+
+        var particles = cloudQT.RetrieveObjectsInArea(new Rect(playerPosition.x - bufferSize, playerPosition.z - bufferSize, 2.0f * bufferSize, 2.0f * bufferSize));
+        foreach (CloudParticleController particle in particles)
+        {
+            //Check for collision
+            Vector3 particlePosition = particle.transform.position;
+
+            Vector3 del = playerPosition - particlePosition;
+            float d2 = del.sqrMagnitude;
+
+            if (d2 < particleCollisionDist2)
+            {
+                Vector3 delNorm = del.normalized;
+                //particle.addVel(-delNorm * 2.0f);
+                particle.transform.position = player.position - delNorm * (d2 + 0.01f);
+            }
+        }
     }
 }
