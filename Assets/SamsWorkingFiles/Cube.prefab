@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 135992149474280078}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,14 +549,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720028936036246}
-  m_LocalRotation: {x: -0, y: 0.9901032, z: -0, w: -0.14034134}
-  m_LocalPosition: {x: -310.07, y: 163.22, z: 229.2}
+  m_LocalRotation: {x: -0, y: 0.40378106, z: -0, w: 0.91485566}
+  m_LocalPosition: {x: -260.5, y: 45.05, z: -276.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4033883734504414}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 196.135, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 47.629, z: 0}
 --- !u!4 &4032213077506508
 Transform:
   m_ObjectHideFlags: 1
@@ -1116,6 +1116,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e698bcd0c67b83f44a0885a7464da057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followCamera: {fileID: 0}
+  camera1: {fileID: 0}
+  lvlMan: {fileID: 0}
+  butMan: {fileID: 0}
+  bird: {fileID: 1144814036442114}
+  chrome: {fileID: 2100000, guid: 779a9ca7f7b4d1848ab81630913153bd, type: 2}
+  green: {fileID: 2100000, guid: e4453dc5a5473c04baca894cb14210ee, type: 2}
+  blue: {fileID: 2100000, guid: bc3e1cb228420d049a5ecb26b662692d, type: 2}
+  red: {fileID: 2100000, guid: c8d51bc9b5a18554e9c2bcc464f5cf38, type: 2}
   smooth: 2
   tiltAngle: 90
   liftCoefficient: 0

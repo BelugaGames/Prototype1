@@ -25,7 +25,7 @@ public class ButtonManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene("GameplayScene");
+        SceneManager.LoadScene("Tutorial_Level");
     }
 
     public void LoadWin()
