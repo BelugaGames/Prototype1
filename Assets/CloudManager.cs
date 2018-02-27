@@ -94,7 +94,7 @@ public class CloudManager : MonoBehaviour
             {
                 Vector3 delNorm = del.normalized;
                 //particle.addVel(-delNorm * 2.0f);
-                particle.transform.position = player.position - delNorm * (d2 + 0.01f);
+                particle.transform.position = player.position - delNorm * (d2 + 0.25f);
             }
         }
     }
