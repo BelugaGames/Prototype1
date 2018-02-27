@@ -8,7 +8,15 @@ public class movementController : MonoBehaviour {
     private SmoothCameraFollow followCamera;
     [SerializeField]
     private Camera camera1;
-    
+
+    public GameObject lvlMan;
+    public GameObject butMan;
+    public GameObject bird;
+    public Material chrome;
+    public Material green;
+    public Material blue;
+    public Material red;
+
     public float smooth = 2.0F;
     public float tiltAngle = 30.0F;
     float tiltAroundZ;
@@ -62,6 +70,11 @@ public class movementController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetButtonDown("Start"))
+        {
+            butMan.GetComponent<ButtonManager>().LoadMenu();
+        }
+
         target.z = horRotConstant * Input.GetAxis("Horizontal");
         target.x = verRotConstant * Input.GetAxis("Vertical");
 
@@ -137,23 +150,6 @@ public class movementController : MonoBehaviour {
 
         Vector3 locE = transform.localEulerAngles;
 
-        // clamping z rotation
-        //if (locE.z > 90.0f && locE.z < 100.0f)
-        //{
-        //    transform.localEulerAngles = new Vector3(locE.x, locE.y, 90.0f);
-        //}
-        //if (locE.z < 270.0f && locE.z > 200.0f)
-        //{
-        //    transform.localEulerAngles = new Vector3(locE.x, locE.y, 270.0f);
-        //}
-
-        //if (Input.GetAxis("Horizontal") < 0.2f && Input.GetAxis("Horizontal") > -0.2f && (transform.localEulerAngles.z > 2 || (transform.localEulerAngles.z < 358.0f && transform.localEulerAngles.z > 200.0f)))
-        //{
-        //    StartCoroutine(cooldown(1.0f));
-        //}
-
-        //Debug.Log(velocity.magnitude);
-
         followCamera.followOffset = new Vector3(0, 0, -10) +
             new Vector3(0, 0, -0.5f) * (GetComponent<Rigidbody>().velocity.magnitude / 4);
 
@@ -163,48 +159,26 @@ public class movementController : MonoBehaviour {
             camera1.fieldOfView = fov + speed;
         }
 
-        // double tap left to barrel roll
-        //if (Input.GetAxis("Horizontal") == 1.0f && canCountL)
-        //{
-        //    timerL = 0.0f;
-        //    ++counterL;
-        //    canCountL = false;
-        //}
-        //if (timerL >= 0.2f)
-        //{
-        //    counterL = 0;
-        //    timerL = 0.0f;
-        //}
-        //if (counterL == 2)
-        //{
-        //    Debug.Log("ROLL L");
-        //}
+        float vel = GetComponent<Rigidbody>().velocity.magnitude;
 
-        //// double tap right to barrel roll
-        //if (Input.GetAxis("Horizontal") == -1.0f && canCountR)
-        //{
-        //    timerR = 0.0f;
-        //    ++counterR;
-        //    canCountR = false;
-        //}
-        //if (timerR >= 0.2f)
-        //{
-        //    counterR = 0;
-        //    timerR = 0.0f;
-        //}
-        //if (counterR == 2)
-        //{
-        //    Debug.Log("ROLL R");
-        //}
-        
-        //if (Input.GetAxis("Horizontal") < 0.2f && Input.GetAxis("Horizontal") > -0.2f)
-        //{
-        //    canCountL = true;
-        //    canCountR = true;
-        //}
+        if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 0)
+        {
+            bird.GetComponent<SkinnedMeshRenderer>().material = chrome;
+        }
+        else if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 1)
+        {
+            bird.GetComponent<SkinnedMeshRenderer>().material = green;
+        }
+        else if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 2)
+        {
+            bird.GetComponent<SkinnedMeshRenderer>().material = blue;
+        }
+        else if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 3)
+        {
+            bird.GetComponent<SkinnedMeshRenderer>().material = red;
+        }
 
-        //timerL += Time.deltaTime;
-        //timerR += Time.deltaTime;
+        CorrectRotation();
     }
 
     IEnumerator cooldown(float _time)
@@ -218,13 +192,13 @@ public class movementController : MonoBehaviour {
         Vector3 locE = transform.localEulerAngles;
 
         // correcting rotation
-        if (locE.z > 2 && locE.z < 100.0f)
+        if (locE.z > 2 && locE.z < 180.0f)
         {
-            transform.localEulerAngles = new Vector3(locE.x, locE.y, locE.z - 2.0f);
+            transform.localEulerAngles = new Vector3(locE.x, locE.y, locE.z - 0.2f);
         }
-        if (locE.z < 360 - 2 && locE.z > 200.0f)
+        if (locE.z < 360 - 2 && locE.z > 180.0f)
         {
-            transform.localEulerAngles = new Vector3(locE.x, locE.y, locE.z + 2.0f);
+            transform.localEulerAngles = new Vector3(locE.x, locE.y, locE.z + 0.2f);
         }
     }
 

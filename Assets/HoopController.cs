@@ -10,10 +10,29 @@ public class HoopController : MonoBehaviour {
     [SerializeField]
     public int requiredSpeedLevel = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    [SerializeField]
+    private GameObject hoopModel;
+
+    public Material green;
+    public Material blue;
+    public Material red;
+
+    // Use this for initialization
+    void Start () {
+
+		if (requiredSpeedLevel == 1)
+        {
+            hoopModel.GetComponent<MeshRenderer>().material = green;
+        }
+        else if (requiredSpeedLevel == 2)
+        {
+            hoopModel.GetComponent<MeshRenderer>().material = blue;
+        }
+        else if (requiredSpeedLevel == 3)
+        {
+            hoopModel.GetComponent<MeshRenderer>().material = red;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
