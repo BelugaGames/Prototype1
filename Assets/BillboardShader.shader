@@ -42,6 +42,9 @@
 	struct vertexOutput {
 		float4 pos : SV_POSITION;
 		float4 tex : TEXCOORD0;
+
+
+		//float4 projPos : TEXCOORD4;
 	};
 
 	vertexOutput vert(vertexInput input)
@@ -54,6 +57,12 @@
 			* float4(_ScaleX, _ScaleY, 1.0, 1.0));
 
 		output.tex = input.tex;
+
+
+
+
+
+
 
 		return output;
 	}
