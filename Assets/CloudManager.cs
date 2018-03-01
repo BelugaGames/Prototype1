@@ -41,7 +41,7 @@ public class CloudManager : MonoBehaviour
                 float distZ = Mathf.Abs(z);
 
                 float n = Mathf.PerlinNoise(-x * 25.01f, -z * 25.01f);
-                Debug.Log(n);
+                //Debug.Log(n);
                 //if (n < 0.75) continue;
 
                 if (distX * distX + distZ * distZ > Mathf.Pow(cloudSize.x / 2, 2.0f)) continue;

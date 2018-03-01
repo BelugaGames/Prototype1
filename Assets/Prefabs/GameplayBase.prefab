@@ -950,7 +950,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593580567569736}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 369.4164, y: 247.4427, z: -52.08297}
+  m_LocalPosition: {x: 369.4164, y: 204, z: -52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4504144989809094}
@@ -1133,14 +1133,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372891145430178}
-  m_LocalRotation: {x: -0, y: 0.9901032, z: -0, w: -0.14034134}
-  m_LocalPosition: {x: 59.346405, y: -91.337296, z: 177.11703}
+  m_LocalRotation: {x: -0, y: 0.52325255, z: -0, w: 0.85217774}
+  m_LocalPosition: {x: 238.82976, y: -186.8, z: -188.8583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4110163340574498}
   m_Father: {fileID: 4504144989809094}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 196.135, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 63.101, z: 0}
 --- !u!4 &4800281253335242
 Transform:
   m_ObjectHideFlags: 1
@@ -1597,7 +1597,7 @@ MonoBehaviour:
   flapForce: 20
   brakeDuration: 1
   brakeForce: 30
-  maxSpeedXZPlane: 600
+  maxSpeedXZPlane: 150
   pullUpRange: 45
   horRotConstant: 4.2
   verRotConstant: 2

@@ -14,9 +14,9 @@ public class LevelManager : MonoBehaviour {
 
     [SerializeField]
     private float 
-        speedStage1 = 10.0f,
-        speedStage2 = 30.0f,
-        speedStage3 = 50.0f;
+        speedStage1 = 20.0f,
+        speedStage2 = 70.0f,
+        speedStage3 = 120.0f;
 
     [SerializeField]
     private Rigidbody player;

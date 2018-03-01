@@ -16,13 +16,7 @@ public class movementController : MonoBehaviour {
     public Material green;
     public Material blue;
     public Material red;
-
-    public float smooth = 2.0F;
-    public float tiltAngle = 30.0F;
-    float tiltAroundZ;
-    float tiltAroundX;
-    float rotAroundY;
-    float tilt;
+    
     Vector3 liftVector;
     public float liftCoefficient;
     public float liftMagnitude;
@@ -40,16 +34,22 @@ public class movementController : MonoBehaviour {
     float brakeProgress = 100000.0f;
     public float brakeForce = 12.0f;
 
+    public float maxFlapSpeed = 100.0f;
     public float maxSpeedXZPlane = 60.0f;
     public float pullUpRange = 45.0f;
 
     public float horRotConstant = 4.0f;
     public float verRotConstant = 2.0f;
 
+    bool compensate = true;
+
     [SerializeField]
     private Animator animator;
 
     private float fov = 0.0f;
+
+    public float fallDuration = 1.0f;
+    private float fallProgress = 1000000.0f;
 
     // Use this for initialization
     void Start () {
@@ -64,7 +64,7 @@ public class movementController : MonoBehaviour {
         {
             butMan.GetComponent<ButtonManager>().LoadMenu();
         }
-
+        
         target.z = horRotConstant * Input.GetAxis("Horizontal");
         target.x = verRotConstant * Input.GetAxis("Vertical");
 
@@ -91,12 +91,20 @@ public class movementController : MonoBehaviour {
         {
             flapProgress += Time.fixedDeltaTime;
 
-            GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0, 1.0f)) * flapFunc(flapProgress / flapDuration) * flapForce);
+            if (GetComponent<Rigidbody>().velocity.magnitude < 5.0f)
+            {
+                GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 1.0f, 1.0f)) * flapFunc(flapProgress / flapDuration) * flapForce);
+            }
+            else if (GetComponent<Rigidbody>().velocity.magnitude < maxFlapSpeed)
+            {
+                GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0, 1.0f)) * flapFunc(flapProgress / flapDuration) * flapForce);
+            }
         }
         else
         {
             if (Input.GetButtonDown("Flap"))
             {
+                compensate = true;
                 animator.SetTrigger("Flapped");
                 flapProgress = 0.0f;
             }
@@ -129,9 +137,19 @@ public class movementController : MonoBehaviour {
 
         Vector3 velocity2 = GetComponent<Rigidbody>().velocity;
         velocity2.y = 0;
-        if (velocity2.magnitude > 5.0f)
+        if (velocity2.magnitude > 5.0f && compensate && fallProgress >= fallDuration)
         {
+            Debug.Log("is compensating");
             compensateXZ();
+        }
+        else
+        {
+            Debug.Log("not compensating");
+        }
+        
+        if (!compensate)
+        {
+            GetComponent<Rigidbody>().AddForce(Physics.gravity);
         }
 
         Vector3 velocity = GetComponent<Rigidbody>().velocity;
@@ -169,12 +187,21 @@ public class movementController : MonoBehaviour {
         }
 
         CorrectRotation();
+        fallProgress += Time.fixedDeltaTime;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.tag == "ground")
+        {
+            compensate = false;
+            fallProgress = 0.0f;
+        }
     }
 
     IEnumerator cooldown(float _time)
     {
         yield return new WaitForSeconds(_time);
-        CorrectRotation();
     }
 
     void CorrectRotation()

@@ -7,6 +7,8 @@ public class HoopController : MonoBehaviour {
     [SerializeField]
     public LevelManager levelManager;
 
+    public GameObject bird;
+
     [SerializeField]
     public int requiredSpeedLevel = 0;
 
@@ -16,6 +18,12 @@ public class HoopController : MonoBehaviour {
     public Material green;
     public Material blue;
     public Material red;
+
+    public bool grantSpeed;
+    bool boosting;
+    public float flapDuration = 1.0f;
+    float flapProgress = 100000.0f;
+    public float flapForce = 120.0f;
 
     // Use this for initialization
     void Start () {
@@ -36,9 +44,20 @@ public class HoopController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void FixedUpdate () {
+        if (boosting)
+        {
+            if (flapProgress <= flapDuration)
+            {
+                flapProgress += Time.fixedDeltaTime;
+                bird.GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 1.0f, 0)) * flapFunc(flapProgress / flapDuration) * flapForce);
+            }
+            else
+            {
+                boosting = false;
+            }
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -51,8 +70,17 @@ public class HoopController : MonoBehaviour {
                 levelManager.points += 1;
                 GameObject.Destroy(gameObject);
             }
-        }
 
-        Debug.Log("Hoop triggered");
+            if (grantSpeed)
+            {
+                flapProgress = 0.0f;
+                boosting = true;
+            }
+        }
+    }
+
+    float flapFunc(float _t)
+    {
+        return -Mathf.Pow((_t * 2.0f) - 1.0f, 2) + 1.0f;
     }
 }
