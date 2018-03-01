@@ -60,7 +60,8 @@
 
 
 
-
+		/*projPos = ComputeScreenPos(output.pos);
+		COMPUTE_EYEDEPTH(output.projPos.z);*/
 
 
 
@@ -70,7 +71,17 @@
 	float4 frag(vertexOutput input) : COLOR
 	{
 		fixed4 col = tex2D(_MainTex, float2(input.tex.xy));
+
+
+		/*float sceneDepth = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(input.projPos));
+		float projZ = input.projPos.z;
+		float fade = saturate(_InvFade * (sceneDepth - projZ));
+		col.a *= fade;*/
+
+
 		col.rgb *= col.a;
+
+
 		return col;
 	}
 
