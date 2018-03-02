@@ -57,7 +57,7 @@ Material:
     - _TextureSample0:
         m_Texture: {fileID: 2800000, guid: ca1179c39f022304bb2f71e4697e7c5d, type: 3}
         m_Scale: {x: 0.1, y: 0.1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 5, y: 5}
     - _TextureSample1:
         m_Texture: {fileID: 2800000, guid: e5fb849a8f01a054eadc25dfc4c3bf93, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -114,7 +114,7 @@ Material:
     - _WaterSpeed_02: -0.02
     - _WaterSpeed_03: 0.02
     - _ZWrite: 1
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
