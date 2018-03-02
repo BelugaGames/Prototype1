@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 849646d51dac1a84c8f7e8cd08d43775
+timeCreated: 1519957887
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _pungo: {fileID: 2800000, guid: e82f57a42748a2949bd7fc493e743caf, type: 3}
+  - _fuck_basecolor: {fileID: 2800000, guid: 47f3c6dd6406fc2468cfa59bdd821ad9, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
