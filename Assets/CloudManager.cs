@@ -23,6 +23,9 @@ public class CloudManager : MonoBehaviour
     private QuadTree<CloudParticleController> cloudQT;
     private float particleCollisionDist2;
 
+    [SerializeField]
+    private float visibilityDist = 750;
+
     // Use this for initialization
     void Start()
     {
@@ -34,19 +37,19 @@ public class CloudManager : MonoBehaviour
 
         for (float x = -cloudSize.x / 2; x < cloudSize.x / 2; x += step)
         {
-            float distX = Mathf.Abs(x);
+            //float distX = Mathf.Abs(x);
 
             for (float z = -cloudSize.z / 2; z < cloudSize.z / 2; z += step)
             {
-                float distZ = Mathf.Abs(z);
+                //float distZ = Mathf.Abs(z);
 
                 float n = Mathf.PerlinNoise(-x * 25.01f, -z * 25.01f);
                 //Debug.Log(n);
                 //if (n < 0.75) continue;
 
-                if (distX * distX + distZ * distZ > Mathf.Pow(cloudSize.x / 2, 2.0f)) continue;
+                //if (distX * distX + distZ * distZ > Mathf.Pow(cloudSize.x / 2, 2.0f)) continue;
 
-                float h = Mathf.PerlinNoise(x * 50.01f, z * 50.01f);
+                float h = Mathf.PerlinNoise(x * 1.1f, z * 1.1f) * 2.0f;
                 for (float y = 0; y < h * cloudSize.y; y += step)
                 {
                     float densityY = Mathf.Abs(y) / (cloudSize.y / 2.0f);
@@ -62,7 +65,7 @@ public class CloudManager : MonoBehaviour
                         int particleIndex = (int)Random.Range(0.0f, (float)cloudParticleObjs.Length - 0.00001f);
                         var particlePrefab = cloudParticleObjs[particleIndex];
 
-                        var randomVec = Random.insideUnitSphere * 5.0f;
+                        var randomVec = Random.insideUnitSphere * step;
 
                         var particle = GameObject.Instantiate(particlePrefab, transform.position + new Vector3(x, y, z) + randomVec, Random.rotation, transform);
                         
@@ -77,12 +80,10 @@ public class CloudManager : MonoBehaviour
                 }
             }
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        float[] cullDistances = new float[32];
+        cullDistances[LayerMask.NameToLayer("Clouds")] = visibilityDist;
+        Camera.main.layerCullDistances = cullDistances;
     }
 
     void FixedUpdate()
