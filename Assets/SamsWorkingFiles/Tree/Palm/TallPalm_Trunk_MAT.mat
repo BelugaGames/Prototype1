@@ -90,7 +90,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorShift: {r: 0.33823532, g: 0.1939879, b: 0.1939879, a: 0}
