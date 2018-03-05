@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour {
         speedText;
 
     [SerializeField]
-    private float 
+    public float 
         speedStage1 = 20.0f,
         speedStage2 = 70.0f,
         speedStage3 = 120.0f;

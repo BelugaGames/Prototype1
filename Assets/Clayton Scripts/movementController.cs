@@ -9,6 +9,12 @@ public class movementController : MonoBehaviour {
     [SerializeField]
     private Camera camera1;
 
+    [SerializeField]
+    private GameObject windFX;
+
+    [SerializeField]
+    private LevelManager levelManager;
+
     public GameObject lvlMan;
     public GameObject butMan;
     public GameObject bird;
@@ -188,6 +194,18 @@ public class movementController : MonoBehaviour {
 
         CorrectRotation();
         fallProgress += Time.fixedDeltaTime;
+
+
+
+        //Adjust wind FX alpha based on speed
+
+        float velocityForWind = GetComponent<Rigidbody>().velocity.magnitude;
+        float fracOfMaxSpeed = (velocityForWind / levelManager.speedStage3);
+        fracOfMaxSpeed *= fracOfMaxSpeed;
+
+        Debug.Log(fracOfMaxSpeed);
+
+        windFX.GetComponent<MeshRenderer>().material.SetFloat("_AlphaFade", fracOfMaxSpeed);
     }
 
     void OnCollisionEnter(Collision other)
