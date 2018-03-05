@@ -14,6 +14,8 @@ public class HoopController : MonoBehaviour {
 
     [SerializeField]
     private GameObject hoopModel;
+    [SerializeField]
+    private GameObject hoopModel2;
 
     public Material green;
     public Material blue;
@@ -31,15 +33,18 @@ public class HoopController : MonoBehaviour {
 
 		if (requiredSpeedLevel == 1)
         {
-            hoopModel.GetComponent<MeshRenderer>().material = green;
+            hoopModel.GetComponent<MeshRenderer>().material.SetColor("_glowcolor", new Color(0, 1, 0));
+            hoopModel2.GetComponent<MeshRenderer>().material.SetColor("_glowcolor", new Color(0, 1, 0));
         }
         else if (requiredSpeedLevel == 2)
         {
-            hoopModel.GetComponent<MeshRenderer>().material = blue;
+            hoopModel.GetComponent<MeshRenderer>().material.SetColor("_glowcolor", new Color(0, 0, 1));
+            hoopModel2.GetComponent<MeshRenderer>().material.SetColor("_glowcolor", new Color(0, 0, 1));
         }
         else if (requiredSpeedLevel == 3)
         {
-            hoopModel.GetComponent<MeshRenderer>().material = red;
+            hoopModel.GetComponent<MeshRenderer>().material.SetColor("_glowcolor", new Color(1, 0, 0));
+            hoopModel2.GetComponent<MeshRenderer>().material.SetColor("_glowcolor", new Color(1, 0, 0));
         }
     }
 	
