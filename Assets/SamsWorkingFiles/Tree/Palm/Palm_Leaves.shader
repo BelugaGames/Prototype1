@@ -12,9 +12,9 @@ Shader "Palm_Leaves"
 		_TransDirect("Direct", Range( 0 , 1)) = 1
 		_TransAmbient("Ambient", Range( 0 , 1)) = 0.2
 		_TransShadow("Shadow", Range( 0 , 1)) = 0.9
-		_TextureSample2("Texture Sample 2", 2D) = "white" {}
 		_TextureSample0("Texture Sample 0", 2D) = "white" {}
 		_TextureSample1("Texture Sample 1", 2D) = "white" {}
+		_palm_leaves_mask("palm_leaves_mask", 2D) = "white" {}
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
@@ -55,8 +55,8 @@ Shader "Palm_Leaves"
 		uniform half _TransDirect;
 		uniform half _TransAmbient;
 		uniform half _TransShadow;
-		uniform sampler2D _TextureSample2;
-		uniform float4 _TextureSample2_ST;
+		uniform sampler2D _palm_leaves_mask;
+		uniform float4 _palm_leaves_mask_ST;
 		uniform float _Cutoff = 0.5;
 
 		inline half4 LightingStandardCustom(SurfaceOutputStandardCustom s, half3 viewDir, UnityGI gi )
@@ -99,8 +99,8 @@ Shader "Palm_Leaves"
 			float2 uv_TextureSample0 = i.uv_texcoord * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
 			float4 tex2DNode1 = tex2D( _TextureSample0, uv_TextureSample0 );
 			o.Albedo = tex2DNode1.rgb;
-			float2 uv_TextureSample2 = i.uv_texcoord * _TextureSample2_ST.xy + _TextureSample2_ST.zw;
-			o.Translucency = ( tex2D( _TextureSample2, uv_TextureSample2 ) * tex2DNode1 ).rgb;
+			float2 uv_palm_leaves_mask = i.uv_texcoord * _palm_leaves_mask_ST.xy + _palm_leaves_mask_ST.zw;
+			o.Translucency = ( tex2DNode1 * tex2D( _palm_leaves_mask, uv_palm_leaves_mask ) ).rgb;
 			o.Alpha = tex2DNode1.a;
 			clip( tex2DNode1.a - _Cutoff );
 		}
@@ -192,17 +192,17 @@ Shader "Palm_Leaves"
 /*ASEBEGIN
 Version=14401
 1927;29;1266;958;362.5396;218.6769;1.28;True;True
-Node;AmplifyShaderEditor.SamplerNode;1;-17.31999,74.32001;Float;True;Property;_TextureSample0;Texture Sample 0;8;0;Create;True;dd51cd04c1d94ce488a304539077ced3;810977f19d467a04a90dfdbd876694ad;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;3;-22.15548,544.7883;Float;True;Property;_TextureSample2;Texture Sample 2;7;0;Create;True;7c78ae7dab590e24dbeaca0ad261cbe9;810977f19d467a04a90dfdbd876694ad;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;2;-18.83996,320.92;Float;True;Property;_TextureSample1;Texture Sample 1;9;0;Create;True;e6781168427e3f8499d4b6f457952c9a;ac25cc52e19355f4c91f68d43f4c86b6;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;4;555,598;Float;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0.0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;1;-17.31999,74.32001;Float;True;Property;_TextureSample0;Texture Sample 0;7;0;Create;True;dd51cd04c1d94ce488a304539077ced3;810977f19d467a04a90dfdbd876694ad;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;11;-5.419616,550.6027;Float;True;Property;_palm_leaves_mask;palm_leaves_mask;9;0;Create;True;7c78ae7dab590e24dbeaca0ad261cbe9;7c78ae7dab590e24dbeaca0ad261cbe9;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;12;428.5004,444.363;Float;False;2;2;0;COLOR;0.0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SamplerNode;2;-18.83996,320.92;Float;True;Property;_TextureSample1;Texture Sample 1;8;0;Create;True;e6781168427e3f8499d4b6f457952c9a;ac25cc52e19355f4c91f68d43f4c86b6;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0.0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1.0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;668.5204,-16.36;Float;False;True;2;Float;ASEMaterialInspector;0;0;Standard;Palm_Leaves;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;False;False;Off;0;0;False;0;0;False;0;Custom;0.5;True;True;0;True;TransparentCutout;;Transparent;ForwardOnly;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;False;0;255;255;0;0;0;0;0;0;0;0;False;2;15;10;25;False;0.5;True;2;SrcAlpha;OneMinusSrcAlpha;0;Zero;Zero;OFF;OFF;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;0;1;-1;-1;0;0;0;False;0;0;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0.0;False;4;FLOAT;0.0;False;5;FLOAT;0.0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0.0;False;9;FLOAT;0.0;False;10;FLOAT;0.0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
-WireConnection;4;0;3;0
-WireConnection;4;1;1;0
+WireConnection;12;0;1;0
+WireConnection;12;1;11;0
 WireConnection;0;0;1;0
 WireConnection;0;1;2;0
-WireConnection;0;7;4;0
+WireConnection;0;7;12;0
 WireConnection;0;9;1;4
 WireConnection;0;10;1;4
 ASEEND*/
-//CHKSM=8034DF6384BF8D6F823B2C503415002DD45FF6E1
+//CHKSM=065928A9DEA0EE6AF99613200A0E4BEBFD9F65F3

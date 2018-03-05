@@ -107,13 +107,13 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaterPower: 0.1
+    - _WaterPower: 0.5
     - _WaterScale_01: 5
     - _WaterScale_02: 5
     - _WaterScale_03: 5
-    - _WaterSpeed_01: -0.01
-    - _WaterSpeed_02: -0.01
-    - _WaterSpeed_03: 0.01
+    - _WaterSpeed_01: -0.02
+    - _WaterSpeed_02: -0.02
+    - _WaterSpeed_03: 0.02
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:

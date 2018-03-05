@@ -7,7 +7,7 @@ ShaderImporter:
   defaultTextures:
   - _TextureSample1: {fileID: 2800000, guid: e6781168427e3f8499d4b6f457952c9a, type: 3}
   - _TextureSample0: {fileID: 2800000, guid: dd51cd04c1d94ce488a304539077ced3, type: 3}
-  - _TextureSample2: {fileID: 2800000, guid: 7c78ae7dab590e24dbeaca0ad261cbe9, type: 3}
+  - _palm_leaves_mask: {fileID: 2800000, guid: 7c78ae7dab590e24dbeaca0ad261cbe9, type: 3}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
