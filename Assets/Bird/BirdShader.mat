@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BirdShader
+  m_Shader: {fileID: 4800000, guid: 3e836966ca2f10d4e940142e108971ec, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BirdTexture_Albedo:
+        m_Texture: {fileID: 2800000, guid: 7879fa5668a725a40aa081710b4a19ee, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BirdTexture_AlbedoGrayscaled:
+        m_Texture: {fileID: 2800000, guid: 52d6e6252d8439d4682db253449f9e7c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BirdTexture_Mask:
+        m_Texture: {fileID: 2800000, guid: f70fe487548b79d45934cb0942ba724b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BirdTexture_Mask3:
+        m_Texture: {fileID: 2800000, guid: 5f17487aa7b2d074bb87a6861f43fc94, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BirdTexture_Roughness:
+        m_Texture: {fileID: 2800000, guid: 51c76b108c6a76142b4c0227ae124118, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _bird_normals:
+        m_Texture: {fileID: 2800000, guid: ff2c1af7cfe40674b9b5dec377ec1486, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _EmissiveMult: 2.5
+    - __dirty: 0
+    - _power: 1.31
+    m_Colors:
+    - _TheBirdColor: {r: 0.5735295, g: 0, b: 0, a: 0}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3e836966ca2f10d4e940142e108971ec
+timeCreated: 1520287934
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _bird_normals: {fileID: 2800000, guid: ff2c1af7cfe40674b9b5dec377ec1486, type: 3}
+  - _BirdTexture_Albedo: {fileID: 2800000, guid: d56cfb77ec60ab84b8f0e200ab7bfb02,
+      type: 3}
+  - _BirdTexture_Roughness: {fileID: 2800000, guid: 51c76b108c6a76142b4c0227ae124118,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

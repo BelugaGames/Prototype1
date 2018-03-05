@@ -5,7 +5,7 @@ licenseType: Free
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _fuck_basecolor: {fileID: 2800000, guid: 47f3c6dd6406fc2468cfa59bdd821ad9, type: 3}
+  - _basecolor: {fileID: 2800000, guid: 47f3c6dd6406fc2468cfa59bdd821ad9, type: 3}
   - _TextureSample1: {fileID: 2800000, guid: 47f3c6dd6406fc2468cfa59bdd821ad9, type: 3}
   - _Noise_1: {fileID: 2800000, guid: 771c9dd14058c934583f1222fe1592bd, type: 3}
   - _Noise2: {fileID: 2800000, guid: 771c9dd14058c934583f1222fe1592bd, type: 3}
