@@ -145,12 +145,12 @@ public class movementController : MonoBehaviour {
         velocity2.y = 0;
         if (velocity2.magnitude > 5.0f && compensate && fallProgress >= fallDuration)
         {
-            Debug.Log("is compensating");
+            //Debug.Log("is compensating");
             compensateXZ();
         }
         else
         {
-            Debug.Log("not compensating");
+            //Debug.Log("not compensating");
         }
         
         if (!compensate)
@@ -202,8 +202,9 @@ public class movementController : MonoBehaviour {
         float velocityForWind = GetComponent<Rigidbody>().velocity.magnitude;
         float fracOfMaxSpeed = (velocityForWind / levelManager.speedStage3);
         fracOfMaxSpeed *= fracOfMaxSpeed;
+        fracOfMaxSpeed *= 0.3f;
 
-        Debug.Log(fracOfMaxSpeed);
+        //Debug.Log(fracOfMaxSpeed);
 
         windFX.GetComponent<MeshRenderer>().material.SetFloat("_AlphaFade", fracOfMaxSpeed);
     }
