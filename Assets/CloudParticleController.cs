@@ -10,7 +10,7 @@ public class CloudParticleController : MonoBehaviour, IQuadTreeObject {
     //[SerializeField]
     //public float radius = 0.4f;
 
-    //private Vector3 velocity;
+    //public Vector3 velocity;
 
     //private bool updateThisFrame;
 
@@ -54,17 +54,9 @@ public class CloudParticleController : MonoBehaviour, IQuadTreeObject {
 
         //void FixedUpdate()
         //{
-        //        //velocity *= 0.9f;
+        //    velocity *= 0.9f;
 
-        //        //Vector3 del = player.position - transform.position;
-        //        //float d2 = del.sqrMagnitude;
-
-        //        //if (d2 < (radius * transform.localScale.x) * (radius * transform.localScale.x))
-        //        //{
-        //        //    Vector3 delNorm = del.normalized;
-        //        //    velocity -= delNorm * 2.0f;
-        //        //    transform.position = player.position - delNorm * (d2 + 0.01f);
-        //        //}
+        //    transform.position += velocity;
         //}
 
         public Vector2 GetQTPosition()
