@@ -57,20 +57,36 @@ public class movementController : MonoBehaviour {
     public float fallDuration = 1.0f;
     private float fallProgress = 1000000.0f;
 
+    public GameObject pauseMenu;
+
     // Use this for initialization
     void Start () {
         GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * 600.0f);
         fov = Camera.main.fieldOfView;
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Start"))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+            }
+            else if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Start"))
-        {
-            butMan.GetComponent<ButtonManager>().LoadMenu();
-        }
-        
         target.z = horRotConstant * Input.GetAxis("Horizontal");
         target.x = verRotConstant * Input.GetAxis("Vertical");
 
