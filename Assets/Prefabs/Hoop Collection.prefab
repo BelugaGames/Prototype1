@@ -185,7 +185,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e4453dc5a5473c04baca894cb14210ee, type: 2}
+  - {fileID: 2100000, guid: 42043161a95ad154795ef362c7d6824e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -219,7 +219,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e4453dc5a5473c04baca894cb14210ee, type: 2}
+  - {fileID: 2100000, guid: 42043161a95ad154795ef362c7d6824e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332,6 +332,7 @@ MonoBehaviour:
   bird: {fileID: 0}
   requiredSpeedLevel: 3
   hoopModel: {fileID: 1015487833543250}
+  hoopModel2: {fileID: 1373345471569428}
   green: {fileID: 2100000, guid: e4453dc5a5473c04baca894cb14210ee, type: 2}
   blue: {fileID: 2100000, guid: bc3e1cb228420d049a5ecb26b662692d, type: 2}
   red: {fileID: 2100000, guid: c8d51bc9b5a18554e9c2bcc464f5cf38, type: 2}
