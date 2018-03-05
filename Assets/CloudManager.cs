@@ -21,6 +21,7 @@ public class CloudManager : MonoBehaviour
     private float[] particleSize;
 
     private QuadTree<CloudParticleController> cloudQT;
+    private float particleCollisionDist;
     private float particleCollisionDist2;
 
     [SerializeField]
@@ -31,8 +32,8 @@ public class CloudManager : MonoBehaviour
     {
         cloudQT = new QuadTree<CloudParticleController>(10, new Rect(-1500, -1500, 1500 * 2, 1500 * 2));
 
-        particleCollisionDist2 = 0.4f * particleSize[0];
-        particleCollisionDist2 *= particleCollisionDist2;
+        particleCollisionDist = 0.4f * particleSize[0];
+        particleCollisionDist2 = particleCollisionDist * particleCollisionDist;
 
 
         for (float x = -cloudSize.x / 2; x < cloudSize.x / 2; x += step)
@@ -89,7 +90,7 @@ public class CloudManager : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 playerPosition = player.transform.position;
-        const float bufferSize = 5.0f;
+        float bufferSize = particleCollisionDist + 2.0f;
 
         var particles = cloudQT.RetrieveObjectsInArea(new Rect(playerPosition.x - bufferSize, playerPosition.z - bufferSize, 2.0f * bufferSize, 2.0f * bufferSize));
         foreach (CloudParticleController particle in particles)
@@ -103,8 +104,8 @@ public class CloudManager : MonoBehaviour
             if (d2 < particleCollisionDist2)
             {
                 Vector3 delNorm = del.normalized;
-                //particle.addVel(-delNorm * 2.0f);
-                particle.transform.position = player.position - delNorm * (d2 + 0.25f);
+                //particle.velocity += -delNorm * 2.0f;
+                particle.transform.position = player.position - delNorm * (Mathf.Sqrt(d2) + 5.0f);
             }
         }
     }

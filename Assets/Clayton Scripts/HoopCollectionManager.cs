@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HoopCollectionManager : MonoBehaviour {
 
+    [SerializeField]
+    private BoxCollider colliderToRemove;
+
+    bool ringsHaveGone = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,10 +16,14 @@ public class HoopCollectionManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.childCount == 0)
+		if (transform.childCount == 0 && !ringsHaveGone)
         {
+            ringsHaveGone = true;
+
             // do the thing after getting all the rings
-            Debug.Log("The Rings are gone!"); 
+            Debug.Log("The Rings are gone!");
+
+            colliderToRemove.enabled = false;
         }
 	}
 }
