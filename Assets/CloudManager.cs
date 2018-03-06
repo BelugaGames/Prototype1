@@ -27,6 +27,14 @@ public class CloudManager : MonoBehaviour
     [SerializeField]
     private float visibilityDist = 750;
 
+
+    private bool destroyingClouds = false;
+    private int currentIndex = 0;
+    float timerAccum = 0.0f;
+    float timeMax = 0.001f;
+    private int indexStep;
+
+
     // Use this for initialization
     void Start()
     {
@@ -85,6 +93,48 @@ public class CloudManager : MonoBehaviour
         float[] cullDistances = new float[32];
         cullDistances[LayerMask.NameToLayer("Clouds")] = visibilityDist;
         Camera.main.layerCullDistances = cullDistances;
+
+        indexStep = transform.childCount / 500;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            destroyingClouds = true;
+        }
+
+        if (destroyingClouds)
+        {
+            Debug.Log(currentIndex);
+
+            if (timerAccum >= timeMax)
+            {
+                int numTimes = (int)(timerAccum / timeMax);
+
+                for (int i = 0; i < numTimes; ++i)
+                {
+                    if (currentIndex >= transform.childCount - 1)
+                    {
+                        currentIndex = 0;
+                    }
+
+                    int stopIndex = Mathf.Min(currentIndex + indexStep, transform.childCount - 1);
+
+                    for (; currentIndex < stopIndex; ++currentIndex)
+                    {
+                        if (Random.Range(0.0f, 1.0f) < 0.25f)
+                        {
+                            transform.GetChild(currentIndex).gameObject.SetActive(false);
+                        }
+                    }
+                }                
+
+                timerAccum = 0.0f;
+            }
+
+            timerAccum += Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
