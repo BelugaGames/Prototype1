@@ -7,6 +7,9 @@ public class HoopController : MonoBehaviour {
     [SerializeField]
     public LevelManager levelManager;
 
+    [SerializeField]
+    private AudioSource hoopPos, hoopNeg;
+
     public GameObject bird;
 
     [SerializeField]
@@ -74,6 +77,11 @@ public class HoopController : MonoBehaviour {
             {
                 levelManager.points += 1;
                 GameObject.Destroy(gameObject);
+                hoopPos.Play();
+            }
+            else
+            {
+                hoopNeg.Play();
             }
 
             if (grantSpeed)

@@ -13,6 +13,9 @@ public class movementController : MonoBehaviour {
     private GameObject windFX;
 
     [SerializeField]
+    private AudioSource flapSound, windSound;
+
+    [SerializeField]
     private LevelManager levelManager;
 
     public GameObject lvlMan;
@@ -129,6 +132,8 @@ public class movementController : MonoBehaviour {
                 compensate = true;
                 animator.SetTrigger("Flapped");
                 flapProgress = 0.0f;
+
+                flapSound.Play();
             }
         }
 
@@ -217,6 +222,8 @@ public class movementController : MonoBehaviour {
 
         float velocityForWind = GetComponent<Rigidbody>().velocity.magnitude;
         float fracOfMaxSpeed = (velocityForWind / levelManager.speedStage3);
+        windSound.volume = fracOfMaxSpeed;
+        windSound.Play();
         fracOfMaxSpeed *= fracOfMaxSpeed;
         fracOfMaxSpeed *= 0.3f;
 

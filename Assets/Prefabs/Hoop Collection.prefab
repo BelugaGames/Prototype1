@@ -330,6 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  hoopPos: {fileID: 0}
+  hoopNeg: {fileID: 0}
   bird: {fileID: 0}
   requiredSpeedLevel: 3
   hoopModel: {fileID: 1015487833543250}
