@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4289376477667546}
   - component: {fileID: 33065531479206068}
   - component: {fileID: 23240526472415116}
+  - component: {fileID: 65109103846239416}
   m_Layer: 0
   m_Name: Rock2lod0
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1053481187557128}
   m_Mesh: {fileID: 4300000, guid: cbbfc46048a7da84b953f9a910fc06cd, type: 3}
+--- !u!65 &65109103846239416
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053481187557128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 190.48398, y: 360.96954, z: 196.7063}
+  m_Center: {x: -15.064365, y: 99.150505, z: 4.472599}
