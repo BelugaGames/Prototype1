@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public GameObject player;
     // Use this for initialization
     void Start()
     {
@@ -36,6 +37,18 @@ public class ButtonManager : MonoBehaviour
     public void LoadTutorial()
     {
         SceneManager.LoadScene("Tutorial");
+    }
+
+    public void ToggleInvertY()
+    {
+        if (player.GetComponent<movementController>().invertY)
+        {
+            player.GetComponent<movementController>().invertY = false;
+        }
+        else
+        {
+            player.GetComponent<movementController>().invertY = true;
+        }
     }
 
     public void QuitLevel()

@@ -62,12 +62,15 @@ public class movementController : MonoBehaviour {
 
     public GameObject pauseMenu;
 
+    public bool invertY;
+
     // Use this for initialization
     void Start () {
         GetComponent<Rigidbody>().AddForce((transform.rotation * new Vector3(0, 0.707f, 0.707f)) * 600.0f);
         fov = Camera.main.fieldOfView;
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
+        invertY = true;
     }
 
     void Update()
@@ -85,13 +88,29 @@ public class movementController : MonoBehaviour {
                 pauseMenu.SetActive(false);
             }
         }
+
+        if (Input.GetButtonDown("Brake"))
+        {
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         target.z = horRotConstant * Input.GetAxis("Horizontal");
-        target.x = verRotConstant * Input.GetAxis("Vertical");
+        if (invertY)
+        {
+            target.x = verRotConstant * Input.GetAxis("Vertical");
+        }
+        else
+        {
+            target.x = verRotConstant * -Input.GetAxis("Vertical");
+        }
 
         transform.rotation *= Quaternion.AngleAxis(target.z, new Vector3(0, 0, 1));
 
