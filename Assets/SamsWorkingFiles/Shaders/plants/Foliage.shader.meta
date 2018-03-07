@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: bdea2bf4882cda247b3ec13d86a02ebf
+timeCreated: 1520452257
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _leafdiff: {fileID: 2800000, guid: f86de7b6fed540b49b158a71fb9171cc, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

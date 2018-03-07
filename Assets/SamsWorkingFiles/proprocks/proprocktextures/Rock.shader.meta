@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 90a0812c9e2aecb4fbda14ec3a8272da
+timeCreated: 1520452689
+licenseType: Free
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Rock1lod0_rock1_Normal: {fileID: 2800000, guid: ee717694c13da1f41a90fc6b1b20d48a,
+      type: 3}
+  - _Rock1lod0_rock1_AlbedoTransparency: {fileID: 2800000, guid: 946055182e7cee041988018b7db77cd3,
+      type: 3}
+  - _Rock1lod0_rock1_MetallicSmoothness: {fileID: 2800000, guid: 2c92b746cbb676d4387eeba7319d38ce,
+      type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
