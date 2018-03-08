@@ -239,7 +239,14 @@ public class movementController : MonoBehaviour {
         CorrectRotation();
         fallProgress += Time.fixedDeltaTime;
 
-
+        if (Vector3.Angle(transform.forward, new Vector3(0, -1, 0)) <= 40.0f)
+        {
+            animator.SetBool("Dive", true);
+        }
+        else
+        {
+            animator.SetBool("Dive", false);
+        }
 
         //Adjust wind FX alpha based on speed
 
