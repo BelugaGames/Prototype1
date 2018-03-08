@@ -28,7 +28,7 @@ public class CloudManager : MonoBehaviour
     private float visibilityDist = 750;
 
 
-    private bool destroyingClouds = false;
+    public bool destroyingClouds = false;
     private int currentIndex = 0;
     float timerAccum = 0.0f;
     float timeMax = 0.001f;
