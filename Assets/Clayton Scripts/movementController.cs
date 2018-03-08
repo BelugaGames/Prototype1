@@ -149,7 +149,8 @@ public class movementController : MonoBehaviour {
             if (Input.GetButtonDown("Flap"))
             {
                 compensate = true;
-                animator.SetTrigger("Flapped");
+                //TODO: FIX THIS
+				//animator.SetTrigger("Flapped");
                 flapProgress = 0.0f;
 
                 flapSound.Play();
@@ -215,7 +216,9 @@ public class movementController : MonoBehaviour {
 
         float vel = GetComponent<Rigidbody>().velocity.magnitude;
 
-        if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 0)
+        /*
+         * TODO: FIX THIS
+         * if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 0)
         {
             bird.GetComponent<SkinnedMeshRenderer>().material = chrome;
         }
@@ -230,7 +233,7 @@ public class movementController : MonoBehaviour {
         else if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 3)
         {
             bird.GetComponent<SkinnedMeshRenderer>().material = red;
-        }
+        }*/
 
         CorrectRotation();
         fallProgress += Time.fixedDeltaTime;
@@ -241,8 +244,9 @@ public class movementController : MonoBehaviour {
 
         float velocityForWind = GetComponent<Rigidbody>().velocity.magnitude;
         float fracOfMaxSpeed = (velocityForWind / levelManager.speedStage3);
-        windSound.volume = fracOfMaxSpeed;
-        windSound.Play();
+        //TODO: FIX THIS
+		//windSound.volume = fracOfMaxSpeed;
+        //windSound.Play();
         fracOfMaxSpeed *= fracOfMaxSpeed;
         fracOfMaxSpeed *= 0.3f;
 
