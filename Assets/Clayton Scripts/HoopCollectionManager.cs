@@ -5,6 +5,9 @@ using UnityEngine;
 public class HoopCollectionManager : MonoBehaviour {
 
     [SerializeField]
+    int stageID = 0;
+
+    [SerializeField]
     private BoxCollider colliderToRemove;
 
     bool ringsHaveGone = false;
@@ -23,7 +26,12 @@ public class HoopCollectionManager : MonoBehaviour {
             // do the thing after getting all the rings
             Debug.Log("The Rings are gone!");
 
-            colliderToRemove.enabled = false;
+
+            if (stageID == 0)
+            {
+                colliderToRemove.enabled = false;
+                GameObject.Find("CloudManager").GetComponent<CloudManager>().destroyingClouds = true;
+            }
         }
 	}
 }

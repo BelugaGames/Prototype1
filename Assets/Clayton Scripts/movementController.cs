@@ -149,7 +149,7 @@ public class movementController : MonoBehaviour {
             if (Input.GetButtonDown("Flap"))
             {
                 compensate = true;
-				animator.SetTrigger("Flapped");
+				animator.SetTrigger("Flap");
                 flapProgress = 0.0f;
 
                 flapSound.Play();
@@ -204,8 +204,8 @@ public class movementController : MonoBehaviour {
 
         Vector3 locE = transform.localEulerAngles;
 
-        followCamera.followOffset = new Vector3(0, 0, -10) +
-            new Vector3(0, 0, -0.5f) * (GetComponent<Rigidbody>().velocity.magnitude / 4);
+        followCamera.followOffset = new Vector3(0, 3.5f, -10) +
+            new Vector3(0, 0, -0.35f) * (GetComponent<Rigidbody>().velocity.magnitude / 4);
 
         float speed = GetComponent<Rigidbody>().velocity.magnitude / 4;
         if (camera1.fieldOfView - speed > 20.0f || camera1.fieldOfView - speed < 100.0f)
@@ -217,19 +217,23 @@ public class movementController : MonoBehaviour {
 
         if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 0)
         {
-            bird.GetComponent<SkinnedMeshRenderer>().material = chrome;
+            bird.GetComponent<SkinnedMeshRenderer>().materials[0].SetColor("_TheBirdColor", Color.white);
+            bird.GetComponent<SkinnedMeshRenderer>().materials[1].SetColor("_TheBirdColor", Color.white);
         }
         else if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 1)
         {
-            bird.GetComponent<SkinnedMeshRenderer>().material = green;
+            bird.GetComponent<SkinnedMeshRenderer>().materials[0].SetColor("_TheBirdColor", Color.green);
+            bird.GetComponent<SkinnedMeshRenderer>().materials[1].SetColor("_TheBirdColor", Color.green);
         }
         else if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 2)
         {
-            bird.GetComponent<SkinnedMeshRenderer>().material = blue;
+            bird.GetComponent<SkinnedMeshRenderer>().materials[0].SetColor("_TheBirdColor", Color.blue);
+            bird.GetComponent<SkinnedMeshRenderer>().materials[1].SetColor("_TheBirdColor", Color.blue);
         }
         else if (lvlMan.GetComponent<LevelManager>().getSpeedLevel(vel) == 3)
         {
-            bird.GetComponent<SkinnedMeshRenderer>().material = red;
+            bird.GetComponent<SkinnedMeshRenderer>().materials[0].SetColor("_TheBirdColor", Color.red);
+            bird.GetComponent<SkinnedMeshRenderer>().materials[1].SetColor("_TheBirdColor", Color.red);
         }
 
         CorrectRotation();
@@ -242,7 +246,7 @@ public class movementController : MonoBehaviour {
         float velocityForWind = GetComponent<Rigidbody>().velocity.magnitude;
         float fracOfMaxSpeed = (velocityForWind / levelManager.speedStage3);
 		windSound.volume = fracOfMaxSpeed;
-        windSound.Play();
+        //windSound.Play();
         fracOfMaxSpeed *= fracOfMaxSpeed;
         fracOfMaxSpeed *= 0.3f;
 
